@@ -1,0 +1,18 @@
+services:
+  lix:
+    image: ghcr.io/lix-project/lix:2.90
+    volumes:
+      - .:/src
+    command: /src/bin/build-sd-image.sh
+    working_dir: /src
+    environment:
+      - NIX_DISTRIBUTION=lix
+
+  nix:
+    image: nixos/nix:latest
+    volumes:
+      - .:/src
+    command: /src/bin/build-sd-image.sh
+    working_dir: /src
+    environment:
+      - NIX_DISTRIBUTION=nix
