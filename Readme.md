@@ -38,3 +38,8 @@ and use it to boot the raspberry pi
 This snippet shows the changes in the system that would be made compared to the currently deployed version
 
 `bin/config-diff.sh`
+
+## Open Questions
+
+- [ ] What about auto updates?
+- [ ] Is it possible to build the packages on my mac (for speed)?
