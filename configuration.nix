@@ -13,12 +13,6 @@ let
   };
 in
 {
-  imports = [
-    # why do I need to put this into modules in the flake?
-    # <nixos-hardware/raspberry-pi/4>
-    # <nixpkgs/nixos/modules/installer/sd-card/sd-image.nix>
-  ];
-
   sops.defaultSopsFile = ./secrets.yaml;
 
   # compressed image is just harder to flash
