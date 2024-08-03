@@ -45,29 +45,6 @@
         };
       };
     };
-  } // inputs.flake-utils.lib.eachDefaultSystem (system:
-    let
-      pkgs = import nixpkgs {
-        inherit system;
-      };
-    in {
-      # See https://git.berlin.ccc.de/cccb/ringbahn/src/branch/main/pkgs/reencrypt-secrets.nix
-      # for how this should work
-      # packages = {
-      #   reencrypt-secrets = pkgs.callPackage (
-      #     import ./pkgs/reencrypt-secrets.nix
-      #   ) { };
-      # };
-
-      # Use `nix develop` to open a development shell
-      # devShells.default = pkgs.mkShell {
-      #   # These packages will be available in the devShell's PATH:
-      #   nativeBuildInputs = [
-      #     # self.packages.${system}.reencrypt-secrets
-      #   ] ++ (with pkgs; [
-      #     sops
-      #   ]);
-      # };
-    }
-  );
+  # See https://git.berlin.ccc.de/cccb/ringbahn/src/branch/main/pkgs/reencrypt-secrets.nix
+  # for how to extend these definitions with custom packages or dev shells
 }
