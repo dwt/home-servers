@@ -16,32 +16,43 @@
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, lix-module, nixos-hardware, sops-nix, ... }: {
+  outputs =
+    inputs@{
+      nixpkgs,
+      lix-module,
+      nixos-hardware,
+      sops-nix,
+      ...
+    }:
+    {
 
-    nixosConfigurations = {
-      pi-lix = nixpkgs.lib.nixosSystem {
-        modules = [
-          # want to use lix as default
-          lix-module.nixosModules.default
-          nixos-hardware.nixosModules.raspberry-pi-4
-          "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-          sops-nix.nixosModules.sops
-          ./configuration.nix
-        ];
-        specialArgs = {
-          inherit inputs;
-        };
-      };
-
-      pi-nix = nixpkgs.lib.nixosSystem {
-        modules = [
+      nixosConfigurations = {
+        pi-lix = nixpkgs.lib.nixosSystem {
+          modules = [
+            # use lix as default
+            lix-module.nixosModules.default
             nixos-hardware.nixosModules.raspberry-pi-4
+            # allow building sd card images
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
             sops-nix.nixosModules.sops
             ./configuration.nix
-        ];
-        specialArgs = {
+          ];
+          specialArgs = {
             inherit inputs;
+          };
+        };
+
+        pi-nix = nixpkgs.lib.nixosSystem {
+          modules = [
+            nixos-hardware.nixosModules.raspberry-pi-4
+            # allow building sd card images
+            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+            sops-nix.nixosModules.sops
+            ./configuration.nix
+          ];
+          specialArgs = {
+            inherit inputs;
+          };
         };
       };
     };
