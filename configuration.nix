@@ -11,7 +11,6 @@ let
   overlay = final: super: {
     makeModulesClosure = x: super.makeModulesClosure (x // { allowMissing = true; });
   };
-  # sdImageModule = import <nixpkgs/nixos/modules/installer/sd-card/sd-image.nix>;
 in
 {
   imports = [
