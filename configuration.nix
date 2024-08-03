@@ -1,10 +1,6 @@
 # TODO
 # - setup fan control (which will be different on the argon one)
-{
-  config,
-  pkgs,
-  ...
-}:
+{ config, pkgs, ... }:
 let
   # Why is this needed, what exactly does this work around?
   overlay = final: super: {
