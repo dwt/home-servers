@@ -29,6 +29,7 @@
 
       nixosConfigurations = {
         pi-lix = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
           modules = [
             # use lix as default
             lix-module.nixosModules.default
@@ -44,6 +45,7 @@
         };
 
         pi-nix = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
           modules = [
             nixos-hardware.nixosModules.raspberry-pi-4
             # allow building sd card images
