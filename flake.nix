@@ -8,7 +8,8 @@
 
     # lix - but doesn't work as of yet
     # See https://git.lix.systems/lix-project/lix/issues/452
-    lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0.tar.gz";
+    # lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0.tar.gz";
+    lix-module.url = "https://git.lix.systems/lix-project/nixos-module";
     lix-module.inputs.nixpkgs.follows = "nixpkgs";
 
     # secrets management
