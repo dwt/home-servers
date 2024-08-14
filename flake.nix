@@ -30,7 +30,6 @@
       ...
     }:
     {
-
       nixosConfigurations = {
         pi-lix = nixpkgs.lib.nixosSystem {
           modules = [
