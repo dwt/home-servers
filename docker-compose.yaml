@@ -1,6 +1,9 @@
 services:
   lix:
-    image: ghcr.io/lix-project/lix:2.90
+    # privileged: true
+    security_opt:
+      - seccomp:unconfined
+    image: ghcr.io/lix-project/lix:2.91
     volumes:
       - .:/src
     command: /src/bin/build-sd-image.sh
