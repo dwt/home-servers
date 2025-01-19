@@ -1,14 +1,10 @@
 # System configuration for my raspberry pi 4 models
 
+When building on darwin, this requires a linux builder. I use [cpick/rosetta-builder](https://github.com/cpick/nix-rosetta-builder).
+
 ## Build an sd card image
 
-`docker compose run --rm nix`
-
-to do this manually, try
-
-`docker compose run --rm nix bash`
-
-and invoke the build steps manually.
+`bin/build-sd-image.sh`
 
 ## Flash the image to the sd card
 

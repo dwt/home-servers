@@ -1,24 +1,14 @@
 #!/usr/bin/env bash
 
-cd /src
-
-# enable flakes
-mkdir -p ~/.config/nix/
-cat > ~/.config/nix/nix.conf <<EOD
-experimental-features = nix-command flakes
-EOD
+NIX_DISTRIBUTION=lix
 
 # build image
-nix \
-    build \
+nix build \
     --print-build-logs \
     ".#nixosConfigurations.pi-$NIX_DISTRIBUTION.config.system.build.sdImage"
 
 # copy image out of nix store
-OUT_PATH=$(nix eval --raw \
-    .#nixosConfigurations.pi-$NIX_DISTRIBUTION.config.system.build.sdImage.outPath
-)
-cp $OUT_PATH/sd-image/nixos-sd-image*.img nixos-sd.img
+cp result/sd-image/nixos-sd-image*.img nixos-sd.img
 
 # TODO copy out generated image
 # then flash to sd card with something like
