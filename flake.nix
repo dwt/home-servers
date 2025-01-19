@@ -23,8 +23,10 @@
 
   outputs =
     inputs@{
+      self,
       nixpkgs,
       lix-module,
+      flake-utils,
       nixos-hardware,
       sops-nix,
       ...
@@ -59,6 +61,11 @@
           };
         };
       };
+    }
+    // flake-utils.lib.simpleFlake {
+      inherit self nixpkgs;
+      name = "fnord";
+      shell = ./shell.nix;
     };
   # See https://git.berlin.ccc.de/cccb/ringbahn/src/branch/main/pkgs/reencrypt-secrets.nix
   # for how to extend these definitions with custom packages or dev shells
