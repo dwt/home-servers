@@ -1,9 +1,8 @@
-#!/usr/bin/env nix-shell
-#!nix-shell -i bash -p nixos-rebuild
+#!/bin/sh
 
+    # --fast \
+    # --build-host rosetta-builder \
 nixos-rebuild switch \
-    --fast \
     --flake .#pi-nix \
     --target-host pi \
-    --build-host pi \
     --use-remote-sudo
