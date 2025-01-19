@@ -1,5 +1,4 @@
-#!/usr/bin/env nix-shell
-#!nix-shell -i bash -p nixos-rebuild
+#!/bin/sh
 
 nixos-rebuild test \
     --fast \

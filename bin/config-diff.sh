@@ -1,11 +1,10 @@
-#!/usr/bin/env nix-shell
-#!nix-shell -i bash -p nixos-rebuild
+#!/bin/sh
 
 set -e
 
 nixos-rebuild build \
     --fast \
-    --flake .#pi-nix \
+    --flake .#pi-lix \
     --build-host pi \
     --target-host pi \
     --use-remote-sudo
