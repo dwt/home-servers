@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-NIX_DISTRIBUTION=lix
+NIX_DISTRIBUTION=${NIX_DISTRIBUTION:-lix}
 
 # build image
 nix build \
