@@ -10,7 +10,6 @@ nix build \
 # copy image out of nix store
 cp result/sd-image/nixos-sd-image*.img nixos-sd.img
 
-# TODO copy out generated image
 # then flash to sd card with something like
 # pv <image> | sudo dd of=/dev/sdX bs=10M status=progress
 # to manually update the system should be possible with something like
