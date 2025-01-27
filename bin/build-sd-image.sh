@@ -5,7 +5,8 @@ NIX_DISTRIBUTION=${NIX_DISTRIBUTION:-lix}
 # build image
 nix build \
     --print-build-logs \
-    ".#nixosConfigurations.pi-$NIX_DISTRIBUTION.config.system.build.sdImage"
+    ".#nixosConfigurations.pi-$NIX_DISTRIBUTION.config.system.build.sdImage" \
+    2>&1 | nom
 
 # copy image out of nix store
 cp result/sd-image/nixos-sd-image*.img nixos-sd.img
