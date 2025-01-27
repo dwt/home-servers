@@ -5,6 +5,7 @@ pkgs.mkShell {
   nativeBuildInputs = with pkgs.buildPackages; [
     nixfmt-rfc-style
     nixos-rebuild
+    git
     # tio
   ];
 }
