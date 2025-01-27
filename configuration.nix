@@ -22,7 +22,7 @@ in
 
   # Enable GPU acceleration
   hardware.raspberry-pi."4".fkms-3d.enable = true;
-  services.pulseaudio.enable = true;
+  hardware.pulseaudio.enable = true;
 
   # Enable flakes and new 'nix' command
   nix.settings.experimental-features = [
@@ -49,12 +49,12 @@ in
   # TODO samba setup
   # see https://nixos.wiki/wiki/Samba
 
-  sops.secrets."wireless.secrets" = { };
-  networking.wireless.secretsFile = config.sops.secrets."wireless.secrets".path;
+  sops.secrets."wireless.env" = { };
+  networking.wireless.environmentFile = config.sops.secrets."wireless.env".path;
   networking.wireless.enable = true;
   networking.wireless.networks = {
-    "ext:home_ssid" = {
-      pskRaw = "ext:home_psk";
+    "@home_ssid@" = {
+      psk = "@home_psk@";
     };
   };
 
