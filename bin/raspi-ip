@@ -1,0 +1,5 @@
+#!/bin/sh
+
+arp -na \
+    | grep --ignore-case --extended-regexp "dc:a6:32|d8:3a:dd" \
+    | grep --extended-regexp --only-matching '(\.?\d{1,3}){4}'
