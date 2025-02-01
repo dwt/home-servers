@@ -22,6 +22,7 @@ in
 
   # Enable GPU acceleration
   hardware.raspberry-pi."4".fkms-3d.enable = true;
+  # hardware.pulseaudio.enable = true;
   services.pulseaudio.enable = true;
 
   # Enable flakes and new 'nix' command
