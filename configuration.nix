@@ -34,7 +34,7 @@ in
   # Workaround for https://github.com/NixOS/nix/issues/9574
   nix.settings.nix-path = config.nix.nixPath;
   # Opinionated: disable channels
-  # nix.channel.enable = false;
+  nix.channel.enable = false;
 
   networking.hostName = "pi";
 
@@ -101,5 +101,5 @@ in
 
   # Just a marker what the first installed version was
   # Ensures database files are kept backwards compatible with data from this version
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
 }
