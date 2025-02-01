@@ -54,9 +54,7 @@ in
   networking.wireless.secretsFile = config.sops.secrets."wireless.secrets".path;
   networking.wireless.enable = true;
   networking.wireless.networks = {
-    "ext:home_ssid" = {
-      pskRaw = "ext:home_psk";
-    };
+    "Wo bleibt die Devolution?".pskRaw = "ext:home_psk";
   };
 
   services.openssh = {
