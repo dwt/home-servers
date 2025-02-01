@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# check the disk
+# diskutil list external physical
+
+# note the disk name of the sd card
+# set --local disk "/dev/disk4"
+# read -p "Enter the disk identifier (e.g., /dev/disk4): " disk
+disk=$(diskutil list external physical | fzf --prompt="Select a disk: " | awk '{print $1}')
+echo $disk
+
+read -p "You have selected $disk. Is this correct? (Y/n): " confirm
+if [[ $confirm != "y" ]] && [[ $confirm != "Y" ]] && [[ -n $confirm ]]; then
+  echo "Exiting."
+  exit 1
+fi
+
+# ensure it is umounted
+diskutil unmountDisk $disk
+
+# Write the image to the sd card
+pv nixos-sd.img | sudo dd of=$disk bs=128K
+
+# eject the disk
+diskutil eject $disk

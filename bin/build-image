@@ -9,7 +9,10 @@ nix build \
     2>&1 | nom
 
 # copy image out of nix store
-cp result/sd-image/nixos-sd-image*.img nixos-sd.img
+if [ -L nixos-sd.img ]; then
+    rm nixos-sd.img
+fi
+ln -s result/sd-image/nixos-*image*.img nixos-sd.img
 
 # then flash to sd card with something like
 # pv <image> | sudo dd of=/dev/sdX bs=10M status=progress

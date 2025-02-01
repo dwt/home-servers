@@ -13,6 +13,10 @@ OUT_PATH=$(nix eval --raw \
     .#nixosConfigurations.pi-nix.config.system.build.toplevel.outPath
 )
 
+# packages
+ssh pi \
+    nix run nixpkgs#nvd -- diff /run/current-system $outPath
+# file level diff
 ssh pi \
       nix run nixpkgs#nix-diff -- \
       /run/current-system \
