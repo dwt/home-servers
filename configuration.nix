@@ -89,7 +89,7 @@ in
   # console.enable = false;
 
   environment.systemPackages = with pkgs; [
-    # not quite sure why these are needed
+    # need these for raspi firmware updates. See docs/firmware-update.md
     libraspberrypi
     raspberrypi-eeprom
 
