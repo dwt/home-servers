@@ -1,6 +1,6 @@
 keys:
-  - &admin_dwt age1pxzu64mk3kqwhdtf2rhdymjwf90687cskldgz9rf8puac4l9wdjqevpwt6
-  - &server_pi age1kfj5g2jcl3qx4jdpcsl30gu3thn06fmvl0uc888efcd5hrku9cpsckw46m
+  - &admin_dwt age194jssyfg68srzatkts8e36xe364mvlyan330c7ds6xggwtv5ld9qms829x
+  - &server_pi age1tq9x52fylcf0h65jaj3shv3dexsea9z2lz4vnc6mmw9hjatlx4hqfa7fqf
 creation_rules:
   - path_regex: secrets.yaml$
     key_groups:
