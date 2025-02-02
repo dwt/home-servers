@@ -23,7 +23,7 @@ function deploy_private_key() {
 }
 
 function refresh_key() {
-    ssh-keygen -R ($here/raspi-ip)
+    ssh-keygen -R $($here/raspi-ip)
     ssh-keyscan $($here/raspi-ip) >> ~/.ssh/known_hosts
 }
 
