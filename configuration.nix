@@ -8,10 +8,6 @@ let
   };
 in
 {
-  imports = [
-    ./modules/argononed.nix
-  ];
-
   sops.defaultSopsFile = ./secrets.yaml;
 
   # compressed image is just harder to flash
@@ -28,6 +24,9 @@ in
   hardware.raspberry-pi."4".fkms-3d.enable = true;
   # hardware.pulseaudio.enable = true;
   services.pulseaudio.enable = true;
+
+  # Enable Argon One fan control
+  services.hardware.argonone.enable = true;
 
   # Enable flakes and new 'nix' command
   nix.settings.experimental-features = [

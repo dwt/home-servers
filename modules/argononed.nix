@@ -3,6 +3,7 @@
   ...
 }:
 {
+  # currently unused, as the argononed service in nixpkgs seems to do the trick
   # Argon ONe Daemon definition cobbled together from
   # nixpkgs package https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/by-name/ar/argononed/package.nix
   # upstream package
