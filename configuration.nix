@@ -106,6 +106,9 @@ in
     libraspberrypi
     raspberrypi-eeprom
 
+    # nix debugging
+    nix-tree
+
     # my dependencies
     rmate-sh
     glances
