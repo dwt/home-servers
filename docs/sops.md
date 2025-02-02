@@ -16,6 +16,8 @@
   - On the target system, the ssh host key is the trust anchor which decrypts all secrets and makes them available in `/run/secrets/*`, possibly symlinked from other places in the system after boot
   - Since I cannot (yet) deploy ssh host keys when creating an sd-image.
   - `bin/ssh-deploy-host-key` to deploy the host key to the target system and overwrite the generated one
+- `git config --global  diff.sopsdiffer.textconv "sh -c 'sops -d $1 2>/dev/null || cat $1' --"`
+  to get `git diff -p` to show decrypted secrets
 
 # TODO Better ways to deploy my raspberry pi secrets
 
