@@ -6,6 +6,7 @@
 - `.sops.yaml` contains
   - at least one age key derived from a private ssh key of me to en- and decrypt secrets
   - `bin/convert-ssh-to-age-key` to create and store it in `~/.config/sops/age/keys.txt`
+  - `cat path/to/ed25519.pub | nix run nixpkgs#ssh-to-age` to convert a single public key
   - at one age key generated from every host that these secrets need to be deployed to
   - rules that map these keys to secrets files
 - `secrets.yaml` contains the secrets (should be split up by host in the future)
