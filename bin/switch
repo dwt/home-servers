@@ -1,8 +1,13 @@
 #!/bin/sh
 
-    # --fast \
-    # --build-host rosetta-builder \
+set -e
+
+HOST=${HOST:-pi}
+
 nixos-rebuild switch \
-    --flake .#pi-nix \
-    --target-host pi \
-    --use-remote-sudo
+    --fast \
+    --flake .#pi-lix \
+    --build-host $HOST \
+    --target-host $HOST \
+    --use-remote-sudo  \
+    2>&1 | nom

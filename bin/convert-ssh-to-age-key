@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# needs an ed25519 key
+# test with AGE_KEY_FILE=/dev/stdout $0
+AGE_KEY_FILE=${AGE_KEY_FILE:-~/.config/sops/age/keys.txt}
+SSH_PRIVATE_KEY_FILE=${SSH_PRIVATE_KEY_FILE:-~/.ssh/id_ed25519}
+{
+    echo "# created:" $(TZ=Europe/Berlin date "+%Y-%m-%dT%H:%M:%S%:z")
+    echo "# from: $SSH_PRIVATE_KEY_FILE"
+    echo "# public key:" $(nix run nixpkgs#ssh-to-age  -- -i  $SSH_PRIVATE_KEY_FILE.pub)
+    nix run nixpkgs#ssh-to-age  -- -private-key -i  $SSH_PRIVATE_KEY_FILE
+} >> $AGE_KEY_FILE

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+here="$(dirname $0)"
+
+ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" "dwt@$($here/raspi-ip)" "$@"

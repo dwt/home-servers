@@ -2,23 +2,31 @@
 
 set -e
 
+HOST=${HOST:-pi}
+
+# Cannot build on localhost until I setup signing keys for me and trust them on the pi
 nixos-rebuild build \
     --fast \
     --flake .#pi-lix \
-    --build-host pi \
-    --target-host pi \
-    --use-remote-sudo
+    --build-host $HOST \
+    --target-host $HOST \
+    --use-remote-sudo  \
+    2>&1 | nom
 
 OUT_PATH=$(nix eval --raw \
     .#nixosConfigurations.pi-nix.config.system.build.toplevel.outPath
 )
 
+# Sadly both of these do not corrently work
+
 # packages
-ssh pi \
-    nix run nixpkgs#nvd -- diff /run/current-system $outPath
+ssh $HOST nix run nixpkgs#nvd -- diff /run/current-system $OUT_PATH
+# doesn't find the derivation
+
 # file level diff
-ssh pi \
+ssh $HOST \
       nix run nixpkgs#nix-diff -- \
       /run/current-system \
       $OUT_PATH \
       --color always
+# nix-diff: unknown-deriver: withBinaryFile: does not exist (No such file or directory)
