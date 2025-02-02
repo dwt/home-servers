@@ -8,6 +8,10 @@ let
   };
 in
 {
+  imports = [
+    ./modules/argononed.nix
+  ];
+
   sops.defaultSopsFile = ./secrets.yaml;
 
   # compressed image is just harder to flash
