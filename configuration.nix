@@ -45,9 +45,10 @@ in
   # make pi.local work
   services.avahi = {
     enable = true;
-    nssmdns4 = true;
     publish.enable = true;
-    publish.workstation = true;
+    nssmdns4 = true; # support .local domains
+    # Is this neccessary?
+    publish.workstation = true; # advertises this machine as 'workstation' but why?
   };
 
   # TODO samba setup
