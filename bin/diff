@@ -4,11 +4,11 @@ set -e
 
 HOST=${HOST:-pi}
 
-# Cannot build on localhost until I setup signing keys for me and trust them on the pi
-    #--build-host $HOST \
+# why do I need --build-host localhost? Shouldn't that be the default?
 nixos-rebuild build \
     --fast \
     --flake .#pi-lix \
+    --build-host localhost \
     --target-host $HOST \
     --use-remote-sudo  \
     2>&1 | nom
@@ -18,21 +18,18 @@ OUT_PATH=$(nix eval --raw \
 )
 CURRENT_SYSTEM=$(ssh $HOST readlink /run/current-system)
 
-echo "OUT_PATH: $OUT_PATH"
-echo "CURRENT_SYSTEM: $CURRENT_SYSTEM"
+#echo "OUT_PATH: $OUT_PATH"
+#echo "CURRENT_SYSTEM: $CURRENT_SYSTEM"
 
+# fetch the current system closure, so I can diff it
 nix copy --from ssh://$HOST $CURRENT_SYSTEM
-#nix copy --from ssh://$HOST $OUT_PATH
-
-# Sadly both of these do not corrently work
-
 
 # package level diff
-nix run nixpkgs#nvd -- diff $CURRENT_SYSTEM ./result
+nix run nixpkgs#nvd -- diff $CURRENT_SYSTEM $OUT_PATH
 
 # file level diff
 nix run nixpkgs#nix-diff -- \
       $CURRENT_SYSTEM \
-      ./result \
+      $OUT_PATH \
       --color always
 # nix-diff: unknown-deriver: withBinaryFile: does not exist (No such file or directory)
