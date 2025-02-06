@@ -1,4 +1,5 @@
-{ config, pkgs, ... }:
+# Enable my custom tradfri <-> homekit bridge
+{ config, ... }:
 {
   sops.secrets."tradfri_bridge.state" = {
     owner = "home-automation";
