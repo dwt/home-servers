@@ -7,7 +7,6 @@ HOST=${HOST:-pi}
 nixos-rebuild switch \
     --fast \
     --flake .#pi-lix \
-    --build-host $HOST \
     --target-host $HOST \
     --use-remote-sudo  \
     2>&1 | nom
