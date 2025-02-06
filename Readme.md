@@ -35,10 +35,9 @@ Pop on an external display and keyboard and see what's up. Cumbersome, but quite
   - Press off switch 5 seconds for hard shutdown
 - [Labists Black Case for Raspberry Pi 4 Model B](https://labists.com/products/raspberry-pi-4-case-kit)
 
-## Open Questions
+## TODO
 
-- [ ] Tease apart config for the raspi at home and in car
 - [ ] What about auto updates?
-- [ ] How do I get my local machine to build for the raspi to speed up deployments?
-- [ ] How describe disk partitions in nix?
-- [ ] What is the state of the metal enclosed pi 4? How do I get it to nixos?
+- [ ] What about auto garbage collecting the store?
+- [ ] How to describe disk partitions in nix?
+- [ ] How to get contact syncing to work via the pi
