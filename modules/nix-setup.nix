@@ -1,0 +1,17 @@
+{ config, ... }:
+{
+  # Enable flakes and new 'nix' command
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+  # Opinionated: disable global registry
+  # nix.settings.flake-registry = "";
+  # Workaround for https://github.com/NixOS/nix/issues/9574
+  nix.settings.nix-path = config.nix.nixPath;
+  nix.settings.trusted-users = [
+    "dwt"
+  ];
+  # Opinionated: disable channels
+  nix.channel.enable = false;
+}
