@@ -1,28 +1,28 @@
 #!/bin/sh
 
-set -e
+set -ex
 
 HOST=${HOST:-pi}
 
-# why do I need --build-host localhost? Shouldn't that be the default?
-nixos-rebuild build \
-    --fast \
-    --flake .#pi-lix \
-    --build-host localhost \
-    --target-host $HOST \
-    --use-remote-sudo  \
-    2>&1 | nom
+# somehow nixos-rebuild build returns a different derivation hash than $(nix eval ...)
+# nixos-rebuild build \
+#    --fast \
+#    --flake .#pi-lix \
+#    --target-host $HOST \
+#    --use-remote-sudo  \
+#    2>&1 | nom
+nom build .#nixosConfigurations.pi-lix.config.system.build.toplevel
 
-OUT_PATH=$(nix eval --raw \
-    .#nixosConfigurations.pi-nix.config.system.build.toplevel.outPath
-)
+# Turns out this gives back a different hash - not sure why that worked in the past
+# OUT_PATH=$(nix eval --raw .#nixosConfigurations.pi-lix.config.system.build.toplevel.outPath)
+OUT_PATH=result
 CURRENT_SYSTEM=$(ssh $HOST readlink /run/current-system)
 
 #echo "OUT_PATH: $OUT_PATH"
 #echo "CURRENT_SYSTEM: $CURRENT_SYSTEM"
 
 # fetch the current system closure, so I can diff it
-nix copy --from ssh://$HOST $CURRENT_SYSTEM
+nix copy --no-check-sigs --from ssh-ng://$HOST $CURRENT_SYSTEM
 
 # package level diff
 nix run nixpkgs#nvd -- diff $CURRENT_SYSTEM $OUT_PATH
