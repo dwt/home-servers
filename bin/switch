@@ -9,4 +9,4 @@ nixos-rebuild switch \
     --flake .#pi-lix \
     --target-host $HOST \
     --use-remote-sudo  \
-    2>&1 | nom
+    --log-format internal-json -v 2>&1 | nom --json
