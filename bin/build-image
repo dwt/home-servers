@@ -17,4 +17,4 @@ ln -s result/sd-image/nixos-*image*.img nixos-sd.img
 # then flash to sd card with something like
 # pv <image> | sudo dd of=/dev/sdX bs=10M status=progress
 # to manually update the system should be possible with something like
-# nixos-rebuild switch --flake .#pi-nix --target-host pi.local --build-host pi.local
+# nixos-rebuild switch --flake .#pi --target-host pi.local --build-host pi.local

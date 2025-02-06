@@ -11,10 +11,10 @@ HOST=${HOST:-pi}
 #    --target-host $HOST \
 #    --use-remote-sudo  \
 #    --log-format internal-json -v 2>&1 | nom --json
-nom build .#nixosConfigurations.pi-lix.config.system.build.toplevel
+nom build .#nixosConfigurations.pi.config.system.build.toplevel
 
 # Turns out this gives back a different hash - not sure why that worked in the past
-# OUT_PATH=$(nix eval --raw .#nixosConfigurations.pi-lix.config.system.build.toplevel.outPath)
+# OUT_PATH=$(nix eval --raw .#nixosConfigurations.pi.config.system.build.toplevel.outPath)
 OUT_PATH=result
 CURRENT_SYSTEM=$(ssh $HOST readlink /run/current-system)
 
