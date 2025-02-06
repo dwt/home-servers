@@ -1,14 +1,13 @@
 { pkgs, ... }:
 let
-  # Why is this needed, what exactly does this work around?
+  # workaround for error with missing packages, not sure if still required when building in docker
+  # like this:
+  # modprobe: FATAL: Module sun4i-drm not found in directory /nix/store/g1hq1b9s38z559v53xgn5imy7fspqx7m-linux-rpi-6.6.51-stable_20241008-modul>
   overlay = final: super: {
     makeModulesClosure = x: super.makeModulesClosure (x // { allowMissing = true; });
   };
 in
 {
-  # workaround for error with missing packages, not sure if still required when building in docker
-  # like this:
-  # modprobe: FATAL: Module sun4i-drm not found in directory /nix/store/g1hq1b9s38z559v53xgn5imy7fspqx7m-linux-rpi-6.6.51-stable_20241008-modul>
   nixpkgs.overlays = [ overlay ];
   nixpkgs.hostPlatform = "aarch64-linux";
 
