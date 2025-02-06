@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
   # Why is this needed, what exactly does this work around?
   overlay = final: super: {
