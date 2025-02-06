@@ -8,6 +8,9 @@ let
   };
 in
 {
+  imports = [
+    ./modules/home-automation.nix
+  ];
   sops.defaultSopsFile = ./secrets.yaml;
 
   # compressed image is just harder to flash
@@ -37,6 +40,9 @@ in
   # nix.settings.flake-registry = "";
   # Workaround for https://github.com/NixOS/nix/issues/9574
   nix.settings.nix-path = config.nix.nixPath;
+  nix.settings.trusted-users = [
+    "dwt"
+  ];
   # Opinionated: disable channels
   nix.channel.enable = false;
 

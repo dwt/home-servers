@@ -16,6 +16,8 @@
     # secrets management
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    home-automation.url = "github:dwt/home-automation";
+    home-automation.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -26,6 +28,7 @@
       flake-utils,
       nixos-hardware,
       sops-nix,
+      home-automation,
       ...
     }:
     let
@@ -42,6 +45,7 @@
               # allow building sd card images
               "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
               sops-nix.nixosModules.sops
+              home-automation.nixosModules.home-automation
               ./configuration.nix
             ];
           specialArgs = {
