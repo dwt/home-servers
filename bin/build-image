@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-NIX_DISTRIBUTION=${NIX_DISTRIBUTION:-lix}
+HOST=${HOST:-pi}
 
 # build image
 nix build \
     --print-build-logs \
-    ".#nixosConfigurations.pi-$NIX_DISTRIBUTION.config.system.build.sdImage" \
+    ".#nixosConfigurations.$HOST.config.system.build.sdImage" \
     2>&1 | nom
 
 # copy image out of nix store

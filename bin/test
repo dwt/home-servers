@@ -2,8 +2,7 @@
 
 nixos-rebuild test \
     --fast \
-    --flake .#pi-nix \
-    --build-host pi \
+    --flake .#pi \
     --target-host pi \
     --use-remote-sudo \
     --log-format internal-json -v 2>&1 | nom --json

@@ -7,7 +7,7 @@ HOST=${HOST:-pi}
 # somehow nixos-rebuild build returns a different derivation hash than $(nix eval ...)
 # nixos-rebuild build \
 #    --fast \
-#    --flake .#pi-lix \
+#    --flake .#pi \
 #    --target-host $HOST \
 #    --use-remote-sudo  \
 #    --log-format internal-json -v 2>&1 | nom --json

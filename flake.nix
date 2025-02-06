@@ -55,8 +55,8 @@
     in
     {
       nixosConfigurations = {
-        pi-lix = nixosSystemWithLix true;
-        pi-nix = nixosSystemWithLix false;
+        pi = nixosSystemWithLix true;
+        # pi = nixosSystemWithLix false;
       };
     }
     // flake-utils.lib.simpleFlake {
