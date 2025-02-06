@@ -62,11 +62,11 @@
         "uv2nix_hammer_overrides": "uv2nix_hammer_overrides"
       },
       "locked": {
-        "lastModified": 1738867789,
-        "narHash": "sha256-iSrVPj5+Fjri3qEvUFL5C3ZKN1AlDiM4VV6XCys3mAg=",
+        "lastModified": 1738869781,
+        "narHash": "sha256-fO773A7yWKM/4njWboS1TU1TBw+D25nWUkK5jtKm4ZM=",
         "owner": "dwt",
         "repo": "home-automation",
-        "rev": "9f0e5fa9d87e8c543f97741e21598240636ef4c4",
+        "rev": "247d2db7889e6c430adc34aac394a9d28026cbac",
         "type": "github"
       },
       "original": {
