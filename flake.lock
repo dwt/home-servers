@@ -62,11 +62,11 @@
         "uv2nix_hammer_overrides": "uv2nix_hammer_overrides"
       },
       "locked": {
-        "lastModified": 1738873368,
-        "narHash": "sha256-OeAVRhX12b7pm/qJ1OBZHa1amnqlhbFM8ZtcgsR2Djk=",
+        "lastModified": 1738913334,
+        "narHash": "sha256-szf5Bs6/DJ9oaVjH1bV2A9vVRSbSeW07w2ik/VO3NHA=",
         "owner": "dwt",
         "repo": "home-automation",
-        "rev": "fae008aa9bc48b56125cde80566d5d3969154cd6",
+        "rev": "538db8d95d6696a164ed26b4d6963bcde7704b13",
         "type": "github"
       },
       "original": {
@@ -334,11 +334,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1734940124,
-        "narHash": "sha256-2+4In1enfixXMTe4P+gDUgA93d+pEHGvG3a/sWX9Wt4=",
+        "lastModified": 1738911992,
+        "narHash": "sha256-qM+5AhrAzoVYPgFJLW+XJLMpmg0hRimqiDVsopcEDBo=",
         "owner": "TyberiusPrime",
         "repo": "uv2nix_hammer_overrides",
-        "rev": "1e739d79d54799f3ad62d0c529073390ec8b8ddb",
+        "rev": "85d4ac52d5e78963a4803be8e26eeb41d5882868",
         "type": "github"
       },
       "original": {
