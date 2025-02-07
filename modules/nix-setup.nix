@@ -10,8 +10,11 @@
   # Workaround for https://github.com/NixOS/nix/issues/9574
   nix.settings.nix-path = config.nix.nixPath;
   nix.settings.trusted-users = [
-    "dwt"
+    config.users.users.dwt.name
   ];
   # Opinionated: disable channels
   nix.channel.enable = false;
+
+  # automatically prune no longer needed nix packages
+  nix.gc.automatic = true;
 }

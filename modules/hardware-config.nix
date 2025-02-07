@@ -13,8 +13,9 @@ in
 
   # Enable GPU acceleration
   hardware.raspberry-pi."4".fkms-3d.enable = true;
-  # hardware.pulseaudio.enable = true;
-  services.pulseaudio.enable = true;
+  hardware.pulseaudio.enable = true;
+  # nixos unstable / 25.04
+  # services.pulseaudio.enable = true;
 
   # Enable Argon One fan control
   services.hardware.argonone.enable = true;

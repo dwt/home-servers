@@ -2,11 +2,9 @@
   description = "Häckers NixOS Homeserver configurations";
 
   inputs = {
-    # raspi kernel doesn't build on nixos-24.11 because of
-    # https://github.com/NixOS/nixpkgs/pull/377972
-    # which is not yet backported into 24.11. That should happen about next week though
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    # add packages from this if needed
+    # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     # raspberry pi hardware description
     nixos-hardware.url = "github:NixOS/nixos-hardware";
