@@ -1,0 +1,5 @@
+#!/bin/sh
+
+here=$(dirname $0)
+nix flake update nixpkgs --commit-lock-file
+$here/switch

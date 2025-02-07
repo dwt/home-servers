@@ -38,6 +38,7 @@ Pop on an external display and keyboard and see what's up. Cumbersome, but quite
 ## TODO
 
 - [ ] What about auto updates?
+  - otherwise the repo would need checking out on the host and then could update via [`system.autoupgrade`](https://nixos.wiki/wiki/Automatic_system_upgrades) - but requires a checkout on the host with all key material
 - [ ] What about auto garbage collecting the store?
 - [ ] How to describe disk partitions in nix?
 - [ ] How to get contact syncing to work via the pi
