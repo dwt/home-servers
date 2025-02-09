@@ -39,7 +39,7 @@
             # allow building sd card images
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
             sops-nix.nixosModules.sops
-            home-automation.nixosModules.home-automation
+            home-automation.nixosModules.default
             ./configuration.nix
           ];
           specialArgs = {
