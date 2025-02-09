@@ -29,32 +29,23 @@
       home-automation,
       ...
     }:
-    let
-      nixosSystemWithLix =
-        useLix:
-        nixpkgs.lib.nixosSystem {
-          modules =
-            (nixpkgs.lib.lists.optional useLix
-              # use lix as default
-              lix-module.nixosModules.default
-            )
-            ++ [
-              nixos-hardware.nixosModules.raspberry-pi-4
-              # allow building sd card images
-              "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-              sops-nix.nixosModules.sops
-              home-automation.nixosModules.home-automation
-              ./configuration.nix
-            ];
+    {
+      nixosConfigurations = {
+        pi = nixpkgs.lib.nixosSystem {
+          modules = [
+            # use lix as default
+            lix-module.nixosModules.default
+            nixos-hardware.nixosModules.raspberry-pi-4
+            # allow building sd card images
+            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+            sops-nix.nixosModules.sops
+            home-automation.nixosModules.home-automation
+            ./configuration.nix
+          ];
           specialArgs = {
             inherit inputs;
           };
         };
-    in
-    {
-      nixosConfigurations = {
-        pi = nixosSystemWithLix true;
-        # pi = nixosSystemWithLix false;
       };
     }
     // flake-utils.lib.simpleFlake {
