@@ -10,7 +10,7 @@
 
   sops.defaultSopsFile = ./secrets.yaml;
 
-  # compressed image is just harder to flash
+  # compressed image is just harder to flash and take longer to build
   sdImage.compressImage = false;
 
   # TODO how do I get auto updates?
