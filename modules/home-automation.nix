@@ -9,7 +9,5 @@
     owner = "home-automation";
     path = config.services.home-automation.tradfri.secretsFile;
   };
-  services.home-automation = {
-    enable = true;
-  };
+  services.home-automation.enable = true;
 }
