@@ -28,8 +28,8 @@ nix copy --no-check-sigs --from ssh-ng://$HOST $CURRENT_SYSTEM
 nix run nixpkgs#nvd -- diff $CURRENT_SYSTEM $OUT_PATH
 
 # file level diff
-nix run nixpkgs#nix-diff -- \
-      $CURRENT_SYSTEM \
-      $OUT_PATH \
-      --color always
+#nix run nixpkgs#nix-diff -- \
+#      $CURRENT_SYSTEM \
+#      $OUT_PATH \
+#      --color always
 # nix-diff: unknown-deriver: withBinaryFile: does not exist (No such file or directory)
