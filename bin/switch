@@ -4,7 +4,8 @@ set -e
 
 HOST=${HOST:-pi}
 
-nixos-rebuild switch \
+nix run nixpkgs#nixos-rebuild -- \
+    switch \
     --fast \
     --flake .#pi \
     --target-host $HOST \
