@@ -62,11 +62,11 @@
         "uv2nix_hammer_overrides": "uv2nix_hammer_overrides"
       },
       "locked": {
-        "lastModified": 1739099662,
-        "narHash": "sha256-xxvbK7eGjFPwcKNDFV9UXBQ/ndZK6a3D8DlwWtwc1xw=",
+        "lastModified": 1745957001,
+        "narHash": "sha256-p3TXogqGHHF4Djzjt9IHJsLUuqi/JvzLEKTeGXK3/UA=",
         "owner": "dwt",
         "repo": "home-automation",
-        "rev": "95fd172c67ff4576616cbedc73d90faba12d39d2",
+        "rev": "8cd77be97de9c4d267d32fd28afe09f563c30278",
         "type": "github"
       },
       "original": {
@@ -173,11 +173,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1737338290,
-        "narHash": "sha256-gnXlfFEHA+/jMH7R+7y3JxrI3WfOjgBhzzJNuFW70UU=",
+        "lastModified": 1744599653,
+        "narHash": "sha256-nysSwVVjG4hKoOjhjvE6U5lIKA8sEr1d1QzEfZsannU=",
         "owner": "pyproject-nix",
         "repo": "build-system-pkgs",
-        "rev": "e1487e5cefda0c7990bdd2e660bee20971680e45",
+        "rev": "7dba6dbc73120e15b558754c26024f6c93015dd7",
         "type": "github"
       },
       "original": {
@@ -194,11 +194,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738204167,
-        "narHash": "sha256-J5M2sj3x4ocM93shScT/3Z4XWHZhwwW1NyQK+C+8Mys=",
+        "lastModified": 1745782090,
+        "narHash": "sha256-c/mqxgOVDcwrdcY3FqG22MwLPGY5rCz5gte1sxISKnM=",
         "owner": "pyproject-nix",
         "repo": "pyproject.nix",
-        "rev": "0d9f4b90cee1b5c5d6c142ef22de1e246e003ccc",
+        "rev": "2db2d95ddbc4ff5e29730cb82fdba6647be258a7",
         "type": "github"
       },
       "original": {
@@ -311,11 +311,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738757219,
-        "narHash": "sha256-JOjupi1w15vFKQ+Ni8qaA5LKzRupnhe9ksQ5PAmJZHk=",
+        "lastModified": 1745697651,
+        "narHash": "sha256-r4A/fkiCenEapHkjJWPiNUZEfviuXMCr6mRozJ5dC4o=",
         "owner": "pyproject-nix",
         "repo": "uv2nix",
-        "rev": "0dfcb77f5bc5997ea61469119f0c1ac5ac9f5673",
+        "rev": "cb6508484d534dafd097713b575f2aebc3417de0",
         "type": "github"
       },
       "original": {
@@ -334,11 +334,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1738911992,
-        "narHash": "sha256-qM+5AhrAzoVYPgFJLW+XJLMpmg0hRimqiDVsopcEDBo=",
+        "lastModified": 1744290086,
+        "narHash": "sha256-bCREgtZMv4OqeNGtkfMkcRopsGqFP3u/BN2gySItccg=",
         "owner": "TyberiusPrime",
         "repo": "uv2nix_hammer_overrides",
-        "rev": "85d4ac52d5e78963a4803be8e26eeb41d5882868",
+        "rev": "6cebd5d28acc0bbb84e22d3808ffc7ef62fb99d2",
         "type": "github"
       },
       "original": {
