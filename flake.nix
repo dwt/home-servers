@@ -9,7 +9,7 @@
     # raspberry pi hardware description
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     # lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz";
-    lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
+    lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0-3.tar.gz";
     lix-module.inputs.nixpkgs.follows = "nixpkgs";
     # secrets management
     sops-nix.url = "github:Mic92/sops-nix";
