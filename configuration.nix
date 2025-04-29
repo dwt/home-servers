@@ -34,6 +34,7 @@
     # my dependencies
     rmate-sh
     glances
+    btop
   ];
 
   # Just a marker what the first installed version was
