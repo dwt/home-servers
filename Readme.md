@@ -2,14 +2,14 @@
 
 When building on darwin, this requires a linux builder. I use [cpick/rosetta-builder](https://github.com/cpick/nix-rosetta-builder).
 
-## Scripts:
+## Some Scripts:
 
 - `bin/build-image` - Build an image for the raspberry pi
 - `bin/flash-image` - Flash the image to the sd card
-- `bin/test` - Switch to the test configuration (i.e. auto revert after reboot)
-- `bin/switch` - Switch to the production configuration
+- `bin/test` - Switch to the configuration for testing (i.e. auto revert after reboot)
+- `bin/switch` - Switch to the configuration permanently
 - `bin/diff` - Show the changes that would be made to the system
-- `bin/update` - Update the flake dependencies
+- `bin/update` - Update all flake dependencies
 - `bin/raspi-ip` - Find the ip of the raspberry pi on the network
 
 ## Pi Recovery
@@ -26,7 +26,7 @@ SSH login via ethernet should still work, as public key authentication is not af
 
 ### External Screen
 
-Pop on an external display and keyboard and see what's up. Cumbersome, but quite reliable to debug boot problems. I'm currently missing an adapter for micro HDMI to HDMI, so can't do this with the Labists Case.
+Pop on an external display and keyboard and see what's up. Cumbersome, but quite reliable to debug boot problems.
 
 ## Pi Case Manuals
 
@@ -40,5 +40,6 @@ Pop on an external display and keyboard and see what's up. Cumbersome, but quite
 - [ ] What about auto updates?
   - otherwise the repo would need checking out on the host and then could update via [`system.autoupgrade`](https://nixos.wiki/wiki/Automatic_system_upgrades) - but requires a checkout on the host with all key material
 - [ ] What about auto garbage collecting the store?
-- [ ] How to describe disk partitions in nix?
+- [ ] move to boot to the ssd
+  - [ ] How to describe disk partitions in nix? [Disco](https://github.com/nix-community/disko)
 - [ ] How to get contact syncing to work via the pi
