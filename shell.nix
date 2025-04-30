@@ -6,6 +6,7 @@ pkgs.mkShell {
     age
     sops
     git
-    # tio
+    pv # show progress in shell pipes
+    # tio # serial console
   ];
 }
