@@ -23,8 +23,8 @@ function deploy_private_key() {
 }
 
 function refresh_key() {
-    ssh-keygen -R $($here/raspi-ip)
-    ssh-keyscan $($here/raspi-ip) >>~/.ssh/known_hosts
+    ssh-keygen -R "$($here/raspi-ip)"
+    ssh-keyscan "$($here/raspi-ip)" >>~/.ssh/known_hosts
 }
 
 deploy_private_key 'ssh_host_ed25519_key' 'u=rw,go='

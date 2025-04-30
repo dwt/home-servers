@@ -1,5 +1,7 @@
 #!/bin/sh
 
-arp -na \
-    | grep --ignore-case --extended-regexp "dc:a6:32|d8:3a:dd" \
-    | grep --only-matching --perl-regexp '(\.?\d{1,3}){4}'
+arp -na |
+    # I've got PIs with macs from those two ranges
+    grep --ignore-case --extended-regexp "dc:a6:32|d8:3a:dd" |
+    # reduce output to IP addresses
+    grep --only-matching --perl-regexp '(\.?\d{1,3}){4}'

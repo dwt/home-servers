@@ -3,10 +3,7 @@
 HOST=${HOST:-pi}
 
 # build image
-nix build \
-    --print-build-logs \
-    ".#nixosConfigurations.$HOST.config.system.build.sdImage" \
-    2>&1 | nom
+nom build ".#nixosConfigurations.$HOST.config.system.build.sdImage"
 
 # copy image out of nix store
 if [ -L nixos-sd.img ]; then
@@ -14,7 +11,5 @@ if [ -L nixos-sd.img ]; then
 fi
 ln -s result/sd-image/nixos-*image*.img nixos-sd.img
 
-# then flash to sd card with something like
-# pv <image> | sudo dd of=/dev/sdX bs=10M status=progress
-# to manually update the system should be possible with something like
-# nixos-rebuild switch --flake .#pi --target-host pi.local --build-host pi.local
+# then flash to sd card with
+# bin/flash-image
