@@ -25,3 +25,5 @@ Modify the way the binary sd-image is built, so it includes the hostkey already.
 
 - That would be a long term solution, but requires more investigation how image building works.
 - [Reading how it is created is probably a good first step](https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/installer/sd-card/sd-image.nix)
+
+BUT: I do not see how this would not put the secret into my local nix store, which is a no no
