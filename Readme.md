@@ -37,9 +37,15 @@ Pop on an external display and keyboard and see what's up. Cumbersome, but quite
 
 ## TODO
 
+- [ ] Support multiple devices from one config
+  - [ ] configure second pi-test
+  - [ ] different wifi 'Geeks.Karibik' hier im club
+  - [ ] different hostname
+  - [ ] different secrets -> Document how to add separate secrets
+  - [ ] different ssh keys
 - [ ] What about auto updates?
   - otherwise the repo would need checking out on the host and then could update via [`system.autoupgrade`](https://nixos.wiki/wiki/Automatic_system_upgrades) - but requires a checkout on the host with all key material
-- [ ] What about auto garbage collecting the store?
+  - also, some times packages on nixpkgs are broken, and not cached, basically I don't want to update when there are uncached packages on nixpkgs. How do I do that?
 - [ ] move to boot to the ssd
   - [ ] How to describe disk partitions in nix? [Disco](https://github.com/nix-community/disko)
 - [ ] How to get contact syncing to work via the pi
