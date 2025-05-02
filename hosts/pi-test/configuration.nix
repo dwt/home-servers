@@ -1,8 +1,5 @@
 {
-  networking.hostName = "pi";
-
-  # Enable Argon One fan control
-  services.hardware.argonone.enable = true;
+  networking.hostName = "pi-test";
 
   # Just a marker what the first installed version was
   # Ensures database files are kept backwards compatible with data from this version

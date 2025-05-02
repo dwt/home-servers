@@ -29,26 +29,44 @@
       home-automation,
       ...
     }:
-    {
-      nixosConfigurations = {
-        pi = nixpkgs.lib.nixosSystem {
+    let
+      darwinSystems = nixpkgs.lib.filter (nixpkgs.lib.hasSuffix "-darwin") nixpkgs.lib.systems.flakeExposed;
+      forAllSystems = nixpkgs.lib.genAttrs darwinSystems;
+
+      commonModules = [
+        modules/sops.nix
+        modules/locale.nix
+        modules/hardware-config.nix
+        modules/standard-packages.nix
+        modules/nix-setup.nix
+        modules/remote-access.nix
+        modules/user.nix
+        modules/sd-image.nix
+      ];
+      nixosSystem =
+        { modules }:
+        nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs;
           };
+          modules = commonModules ++ modules;
+        };
+    in
+    {
+      nixosConfigurations = {
+        pi = nixosSystem {
           modules = [
-            modules/sops.nix
-            modules/locale.nix
-            modules/hardware-config.nix
-            modules/standard-packages.nix
-            modules/nix-setup.nix
-            modules/remote-access.nix
-            modules/user.nix
-            modules/sd-image.nix
-
             hosts/pi/home-automation.nix
             hosts/pi/configuration.nix
           ];
         };
+
+        pi-test = nixosSystem {
+          modules = [
+            hosts/pi/configuration.nix
+          ];
+        };
+
       };
     }
     // flake-utils.lib.simpleFlake {
