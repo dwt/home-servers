@@ -71,7 +71,8 @@
 
         pi-test = nixosSystem {
           modules = [
-            hosts/pi/configuration.nix
+            hosts/pi-test/configuration.nix
+            hosts/pi-test/usbc-serial.nix
           ];
         };
 
