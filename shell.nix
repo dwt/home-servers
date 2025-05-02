@@ -1,6 +1,6 @@
 { pkgs }:
 pkgs.mkShell {
-  nativeBuildInputs = with pkgs.buildPackages; [
+  packages = with pkgs; [
     nixos-rebuild
     nix-output-monitor
     age
