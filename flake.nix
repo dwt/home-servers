@@ -21,11 +21,6 @@
     inputs@{
       self,
       nixpkgs,
-      lix-module,
-      flake-utils,
-      nixos-hardware,
-      sops-nix,
-      home-automation,
       ...
     }:
     let
