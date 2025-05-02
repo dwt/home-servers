@@ -1,34 +1,37 @@
 #!/bin/bash
 
+set -x
 set -eo pipefail
+HOST=${1:-pi}
+
 here=$(dirname $0)
 
-function get_sops_secret() {
+get_sops_secret() {
     local secret_name=$1
-    sops decrypt secrets.yaml | yq -r "$secret_name"
+    sops decrypt hosts/$HOST/secrets.yaml | yq -r "$secret_name"
 }
 
-function write_private_key() {
+write_private_key() {
     local target_filename=$1
     local permissions=$2
-    $here/insecure-ssh "sudo tee $target_filename  > /dev/null"
-    $here/insecure-ssh "sudo chmod $permissions $target_filename"
+    $here/insecure-ssh $HOST "sudo tee $target_filename  > /dev/null"
+    $here/insecure-ssh $HOST "sudo chmod $permissions $target_filename"
 }
 
-function deploy_private_key() {
+deploy_private_key() {
     local secret_name=$1
     local permissions=$2
     local target_filename="/etc/ssh/${secret_name}"
     get_sops_secret ".ssh[\"${secret_name}\"]" | write_private_key $target_filename $permissions
 }
 
-function refresh_key() {
+refresh_key() {
     ssh-keygen -R "$($here/raspi-ip)"
     ssh-keyscan "$($here/raspi-ip)" >>~/.ssh/known_hosts
 }
 
 deploy_private_key 'ssh_host_ed25519_key' 'u=rw,go='
 deploy_private_key 'ssh_host_ed25519_key.pub' 'u=rw,go=r'
-$here/insecure-ssh "sudo systemctl restart sshd"
+$here/insecure-ssh $HOST "sudo systemctl restart sshd"
 refresh_key
-$here/insecure-ssh "sudo systemctl reboot"
+$here/insecure-ssh $HOST "sudo systemctl reboot"
