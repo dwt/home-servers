@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs }:
 pkgs.mkShell {
   nativeBuildInputs = with pkgs.buildPackages; [
     nixos-rebuild

@@ -5,7 +5,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     # add packages from this if needed
     # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
     # raspberry pi hardware description
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     # lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz";
@@ -68,11 +67,18 @@
         };
 
       };
-    }
-    // flake-utils.lib.simpleFlake {
-      name = "pi";
-      inherit self nixpkgs;
-      shell = ./shell.nix;
+
+      devShells = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        {
+          default = import ./shell.nix {
+            inherit pkgs;
+          };
+        }
+      );
     };
   # See https://git.berlin.ccc.de/cccb/ringbahn/src/branch/main/pkgs/reencrypt-secrets.nix
   # for how to extend these definitions with custom packages or dev shells
