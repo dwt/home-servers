@@ -45,7 +45,7 @@
             modules/user.nix
             modules/sd-image.nix
 
-            modules/home-automation.nix
+            hosts/pi/home-automation.nix
             hosts/pi/configuration.nix
           ];
         };
