@@ -2,4 +2,4 @@
 
 here=$(dirname $0)
 nix flake update nixpkgs --commit-lock-file
-$here/switch
+$here/switch $1

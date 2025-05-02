@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-HOST=${HOST:-pi}
+HOST=${1:-pi}
 
 # build image
 nom build ".#nixosConfigurations.$HOST.config.system.build.sdImage"

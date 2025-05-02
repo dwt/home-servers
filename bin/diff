@@ -2,9 +2,9 @@
 
 set -ex
 
-HOST=${HOST:-pi}
+HOST=${1:-pi}
 
-nom build .#nixosConfigurations.pi.config.system.build.toplevel
+nom build .#nixosConfigurations.$HOST.config.system.build.toplevel
 
 OUT_PATH=result
 CURRENT_SYSTEM=$(ssh $HOST readlink /run/current-system)
