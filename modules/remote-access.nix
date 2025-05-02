@@ -23,7 +23,7 @@
     settings.KbdInteractiveAuthentication = false;
   };
 
-  # make pi.local work
+  # make $host.local work
   services.avahi = {
     enable = true;
     publish.enable = true;

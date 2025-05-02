@@ -11,11 +11,10 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEgnOPFv54EK6/fxb49JxiNaD5C5qBdKs2dCANFvyxTC Terminus@iPad"
       ];
       extraGroups = [
-        "wheel" # Enable ‘sudo’ for the user.
+        "wheel" # Allow ‘sudo’ for this user.
       ];
     };
   };
 
-  # Don't want to enter a password every time for sudo
   security.sudo.wheelNeedsPassword = false;
 }
