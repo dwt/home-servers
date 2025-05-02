@@ -31,6 +31,15 @@
     let
       darwinSystems = nixpkgs.lib.filter (nixpkgs.lib.hasSuffix "-darwin") nixpkgs.lib.systems.flakeExposed;
       forAllSystems = nixpkgs.lib.genAttrs darwinSystems;
+      forAllSystemsWithPackages =
+        fn:
+        forAllSystems (
+          system:
+          fn {
+            inherit system;
+            pkgs = nixpkgs.legacyPackages.${system};
+          }
+        );
 
       commonModules = [
         modules/sops.nix
@@ -68,15 +77,10 @@
 
       };
 
-      devShells = forAllSystems (
-        system:
-        let
-          pkgs = nixpkgs.legacyPackages.${system};
-        in
+      devShells = forAllSystemsWithPackages (
+        { pkgs, ... }:
         {
-          default = import ./shell.nix {
-            inherit pkgs;
-          };
+          default = import ./shell.nix { inherit pkgs; };
         }
       );
     };
