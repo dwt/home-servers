@@ -32,19 +32,22 @@
     {
       nixosConfigurations = {
         pi = nixpkgs.lib.nixosSystem {
-          modules = [
-            # use lix as default
-            lix-module.nixosModules.default
-            nixos-hardware.nixosModules.raspberry-pi-4
-            # allow building sd card images
-            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-            sops-nix.nixosModules.sops
-            home-automation.nixosModules.default
-            ./configuration.nix
-          ];
           specialArgs = {
             inherit inputs;
           };
+          modules = [
+            modules/sops.nix
+            modules/locale.nix
+            modules/hardware-config.nix
+            modules/standard-packages.nix
+            modules/nix-setup.nix
+            modules/remote-access.nix
+            modules/user.nix
+            modules/sd-image.nix
+
+            modules/home-automation.nix
+            hosts/pi/configuration.nix
+          ];
         };
       };
     }

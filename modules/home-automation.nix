@@ -1,6 +1,9 @@
 # Enable my custom tradfri <-> homekit bridge
-{ config, ... }:
+{ config, inputs, ... }:
 {
+  imports = [
+    inputs.home-automation.nixosModules.default
+  ];
   sops.secrets."tradfri_bridge.state" = {
     owner = "home-automation";
     path = config.services.home-automation.homekit.secretsFile;

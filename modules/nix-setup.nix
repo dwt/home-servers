@@ -1,5 +1,8 @@
-{ config, ... }:
+{ config, inputs, ... }:
 {
+  imports = [
+    inputs.lix-module.nixosModules.default
+  ];
   # Enable flakes and new 'nix' command
   nix.settings.experimental-features = [
     "nix-command"

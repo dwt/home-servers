@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 let
   # workaround for error with missing packages, not sure if still required when building in docker
   # like this:
@@ -8,6 +8,11 @@ let
   };
 in
 {
+
+  imports = [
+    inputs.nixos-hardware.nixosModules.raspberry-pi-4
+  ];
+
   nixpkgs.overlays = [ overlay ];
   nixpkgs.hostPlatform = "aarch64-linux";
 
@@ -16,9 +21,6 @@ in
   hardware.pulseaudio.enable = true;
   # nixos unstable / 25.04
   # services.pulseaudio.enable = true;
-
-  # Enable Argon One fan control
-  services.hardware.argonone.enable = true;
 
   environment.systemPackages = with pkgs; [
     # need these for raspi firmware updates. See docs/firmware-update.md
