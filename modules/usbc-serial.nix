@@ -8,6 +8,8 @@
   # https://github.com/NixOS/nixos-hardware/blob/master/raspberry-pi/4/dwc2.nix
   # https://linux-sunxi.org/USB_Gadget/Serial
   # https://www.kernel.org/doc/Documentation/usb/gadget-testing.txt
+
+  # enable the device overlay so usb c is initialized
   hardware.raspberry-pi."4".dwc2.enable = true;
   # enable serial device over usb-c
   boot.initrd.kernelModules = [
