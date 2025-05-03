@@ -7,6 +7,6 @@ pkgs.mkShell {
     sops
     git
     pv # show progress in shell pipes
-    # tio # serial console
+    tio # serial console
   ];
 }

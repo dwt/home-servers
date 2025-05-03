@@ -1,0 +1,3 @@
+#!/bin/sh
+
+tio --baudrate 115200 /dev/cu.usbmodem*
