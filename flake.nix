@@ -45,6 +45,7 @@
         modules/remote-access.nix
         modules/user.nix
         modules/sd-image.nix
+        modules/usbc-serial.nix
       ];
       nixosSystem =
         { modules }:
@@ -67,10 +68,8 @@
         pi-test = nixosSystem {
           modules = [
             hosts/pi-test/configuration.nix
-            hosts/pi-test/usbc-serial.nix
           ];
         };
-
       };
 
       devShells = forAllSystemsWithPackages (
