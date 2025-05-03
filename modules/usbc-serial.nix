@@ -21,6 +21,7 @@
   ];
   # allow login via serial console
   # only waits for around around 60s for logins
+  # can be restarted with `systemctl start serial-getty@ttyGS0.service`
   systemd.services."serial-getty@ttyGS0" = {
     enable = true;
     wantedBy = [ "multi-user.target" ];
