@@ -1,6 +1,13 @@
 {
   # TODO tell uboot to also use the usb serial device
   # so I can go back to an old nixos revision
+  # Not sure this is actually possible though
+  # This says it's not: https://stackoverflow.com/questions/63104542/can-usb-otg-be-used-for-u-boot-and-linux-consoles
+
+  # Deeper documentation
+  # https://github.com/NixOS/nixos-hardware/blob/master/raspberry-pi/4/dwc2.nix
+  # https://linux-sunxi.org/USB_Gadget/Serial
+  # https://www.kernel.org/doc/Documentation/usb/gadget-testing.txt
   hardware.raspberry-pi."4".dwc2.enable = true;
   # enable serial device over usb-c
   boot.initrd.kernelModules = [
