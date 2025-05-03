@@ -1,13 +1,14 @@
 keys:
   - &admin_dwt age194jssyfg68srzatkts8e36xe364mvlyan330c7ds6xggwtv5ld9qms829x
   - &server_pi age1tq9x52fylcf0h65jaj3shv3dexsea9z2lz4vnc6mmw9hjatlx4hqfa7fqf
-  # - &server_pi_test todo
+  - &server_pi_test age1ad0ahft4j00th9gdzas0xvk6lyn3qtazj5dr3rrvxtwfjc3qrcfqpr9ngs
 creation_rules:
-  - path_regex: secrets.yaml$
+  - path_regex: ^secrets.yaml$
     key_groups:
       - age:
           - *admin_dwt
           - *server_pi
+          - *server_pi_test
   - path_regex: hosts/pi/secrets.yaml$
     key_groups:
       - age:
@@ -17,4 +18,4 @@ creation_rules:
     key_groups:
       - age:
           - *admin_dwt
-          # - *server_pi_test
+          - *server_pi_test

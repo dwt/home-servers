@@ -11,7 +11,7 @@
   - rules that map these keys to secrets files
 - `secrets.yaml` contains the secrets (should be split up by host in the future)
   - `sops secrets.yaml` to edit them
-  - `sops updatekeys secrets.yaml` to reencrypt the file after keys change
+  - `sops updatekeys **/secrets.yaml` to reencrypt the file after keys change
 - ssh host keys:
   - On the target system, the ssh host key is the trust anchor which decrypts all secrets and makes them available in `/run/secrets/*`, possibly symlinked from other places in the system after boot
   - Since I cannot (yet) deploy ssh host keys when creating an sd-image.
