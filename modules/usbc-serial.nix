@@ -1,4 +1,6 @@
 {
+  # TODO tell uboot to also use the usb serial device
+  # so I can go back to an old nixos revision
   hardware.raspberry-pi."4".dwc2.enable = true;
   # enable serial device over usb-c
   boot.initrd.kernelModules = [
