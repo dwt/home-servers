@@ -1,6 +1,8 @@
 {
   networking.hostName = "pi";
 
+  my.raspberry-pi.usbc-serial.enable = false;
+
   # Enable Argon One fan control
   services.hardware.argonone.enable = true;
 
