@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     # add packages from this if needed
-    # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # raspberry pi hardware description
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     # lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz";
