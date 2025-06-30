@@ -17,9 +17,7 @@ in
 
   # Enable GPU acceleration
   hardware.raspberry-pi."4".fkms-3d.enable = true;
-  hardware.pulseaudio.enable = true;
-  # nixos unstable / 25.04
-  # services.pulseaudio.enable = true;
+  services.pulseaudio.enable = true;
 
   environment.systemPackages = with pkgs; [
     # need these for raspi firmware updates. See docs/firmware-update.md
