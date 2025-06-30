@@ -19,5 +19,10 @@
   nix.channel.enable = false;
 
   # automatically prune no longer needed nix packages
-  nix.gc.automatic = true;
+  # nix.gc.automatic = true;
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 10d --keep 10";
+  };
 }
