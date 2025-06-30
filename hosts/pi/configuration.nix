@@ -1,6 +1,7 @@
 {
   networking.hostName = "pi";
 
+  # kills booting on 25.05 for me -> Explore on pi-test first
   my.raspberry-pi.usbc-serial.enable = false;
 
   # Enable Argon One fan control
