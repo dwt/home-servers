@@ -2,13 +2,16 @@
 {
   # define secret
   sops.secrets."wireless.secrets" = { };
-  networking.wireless.secretsFile = config.sops.secrets."wireless.secrets".path;
-  networking.wireless.enable = true;
-  networking.wireless.networks = {
-    # SSID can come from secret too, perhaps marked as *_unencrypted
-    # not easily, as there is no secret access with sops in the evaluation of this file
-    "Wo bleibt die Devolution?".pskRaw = "ext:home_psk";
+  networking.wireless = {
+    enable = true;
+    secretsFile = config.sops.secrets."wireless.secrets".path;
+    networks = {
+      # SSID can come from secret too, perhaps marked as *_unencrypted
+      # not easily, as there is no secret access with sops in the evaluation of this file
+      "Wo bleibt die Devolution?".pskRaw = "ext:home_psk";
+    };
   };
+
   # allow usage of `wpa_cli`
   # networking.wireless.userControlled.enable = true;
 
@@ -28,7 +31,7 @@
     enable = true;
     publish.enable = true;
     nssmdns4 = true; # support .local domains
-    # Is this neccessary?
+    # Is this necessary?
     publish.workstation = true; # advertises this machine as 'workstation' but why?
   };
 
