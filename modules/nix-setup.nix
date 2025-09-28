@@ -5,10 +5,6 @@
   ...
 }:
 {
-  imports = [
-    inputs.lix-module.nixosModules.default
-  ];
-
   # Enable flakes and new 'nix' command
   nix.settings = {
     experimental-features = [
@@ -54,5 +50,11 @@
       # pkgs-master = mkPkgs inputs.nixpkgs-master;
       # pkgs-local = mkPkgs inputs.nixpkgs-local;
     };
+
+  # setup lix
+  # https://lix.systems/add-to-config/#advanced-change
+  # see there for advanced nix -> lix overrides of custom packages
+  # also supports: stable, latest, git
+  nix.package = pkgs.lixPackageSets.latest.lix;
 
 }
