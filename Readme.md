@@ -40,6 +40,7 @@ Pop on an external display and keyboard and see what's up. Cumbersome, but quite
 - [ ] What about auto updates?
   - otherwise the repo would need checking out on the host and then could update via [`system.autoupgrade`](https://nixos.wiki/wiki/Automatic_system_upgrades) - but requires a checkout on the host with all key material
   - also, some times packages on nixpkgs are broken, and not cached, basically I don't want to update when there are uncached packages on nixpkgs. How do I do that?
+  - [`system.autoUpgrade.flags` can contain `[ "--update-input" "nixpkgs" "--commit-lock-file" ]` even without `--commit-lock-file` to stay up to date for flake based systems](https://search.nixos.org/options?channel=25.05&show=system.autoUpgrade.flags&from=0&size=50&sort=relevance&type=packages&query=flake). [Used together with `system.autoUpgrade.flake`](https://search.nixos.org/options?channel=25.05&show=system.autoUpgrade.flake&from=0&size=50&sort=relevance&type=packages&query=system.)
 - [ ] move to boot to the ssd
   - [ ] How to describe disk partitions in nix? [Disco](https://github.com/nix-community/disko)
 - [ ] How to get contact syncing to work via the pi
