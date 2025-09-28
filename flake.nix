@@ -21,6 +21,19 @@
       ...
     }:
     let
+      # Could this be upstreamed?
+      # perhaps with a generator to get all functions by handing in the packages in question?
+      # forFlakeExposedSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
+      # forFlakeExposedSystemsWithPackages =
+      #   fn:
+      #   forFlakeExposedSystems (
+      #     system:
+      #     fn {
+      #       inherit system;
+      #       pkgs = nixpkgs.legacyPackages.${system};
+      #     }
+      #   );
+
       darwinSystems = nixpkgs.lib.filter (nixpkgs.lib.hasSuffix "-darwin") nixpkgs.lib.systems.flakeExposed;
       forAllSystems = nixpkgs.lib.genAttrs darwinSystems;
       forAllSystemsWithPackages =
