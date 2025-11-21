@@ -6,7 +6,6 @@
 
     # my dependencies
     rmate-sh
-    glances
     btop
     ncdu
     jq
