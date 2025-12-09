@@ -11,5 +11,5 @@ if [ -L nixos-sd.img ]; then
 fi
 ln -s result/sd-image/nixos-*image*.img nixos-sd.img
 
-# then flash to sd card with
-# bin/flash-image
+echo Now flash to sd card with
+echo bin/flash-image
