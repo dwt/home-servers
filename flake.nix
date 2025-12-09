@@ -2,8 +2,9 @@
   description = "Häckers NixOS Homeserver configurations";
 
   inputs = {
+    # main package source
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-    # add packages from this if needed
+    # only as needed
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # raspberry pi hardware description
     nixos-hardware.url = "github:NixOS/nixos-hardware";
