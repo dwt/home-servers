@@ -16,7 +16,7 @@ CURRENT_SYSTEM=$(ssh $HOST readlink /run/current-system)
 nix copy --no-check-sigs --from ssh-ng://$HOST $CURRENT_SYSTEM
 
 # package level diff
-nix run nixpkgs#nvd -- diff $CURRENT_SYSTEM $OUT_PATH
+nvd diff $CURRENT_SYSTEM $OUT_PATH
 
 # file level diff
 #nix run nixpkgs#nix-diff -- \

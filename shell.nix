@@ -3,6 +3,7 @@ pkgs.mkShell {
   packages = with pkgs; [
     nixos-rebuild
     nix-output-monitor
+    nvd
     age
     ssh-to-age
     sops
