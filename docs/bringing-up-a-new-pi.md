@@ -8,8 +8,13 @@ Provisioning the new pi should now work, but it won't join any wireless, because
 
 1. Connect to the new pi via ethernet
 1. Enable internet connecition sharing
-1. Monitor ARP for the new pi to show up `arp -ni bridge100 -la` or `bin/raspi-ip`. This took me a few minutes to show up.s
-1. Login via bin/insecure-ssh dwt@$IP
+1. Monitor ARP for the new pi to show up `arp -ni bridge100 -la` or `bin/raspi-ip`. This took me a few minutes to show up.
+1. Login via bin/insecure-ssh $IP
+
+Either deploy the currently saved private key to the raspi
+1. Deploy via `bin/ssh-deploy-host-key $HOST $IP` to the new pi, so it can decrypt the secrets
+
+or adapt to the new key it generated:
 1. Copy down the ssh keys and add generate a new age key from them and reencrypt the secrets to that thing (see [sops.md](sops.md))
 1. Add key for ip to local config so `bin/switch $HOST $IP` works.
   1. `ssh-keygen -R $IP`
