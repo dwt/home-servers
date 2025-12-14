@@ -72,6 +72,7 @@
         pi = nixosSystem {
           modules = [
             hosts/pi/home-automation.nix
+            hosts/pi/time-machine.nix
             hosts/pi/configuration.nix
           ];
         };
