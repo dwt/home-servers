@@ -1,5 +1,16 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 {
+  users.groups.timemachine.members = [
+    "dwt"
+    "vera"
+  ];
+
+  # Ensure the mountpoint always has the right ownership and mode.
+  # 2770 => rwx for owner+group, setgid so new files/dirs inherit the group.
+  systemd.tmpfiles.rules = [
+    "d /mnt/backup 2770 root timemachine - -"
+  ];
+
   fileSystems."/mnt/backup" = {
     label = "backup";
     fsType = "btrfs";
@@ -19,6 +30,13 @@
     openFirewall = true;
     settings.TimeMachine = {
       path = "/mnt/backup";
+
+      # Ensure group ownership and reasonable perms on created files/dirs
+      "force group" = "timemachine";
+      "create mask" = "0660";
+      "directory mask" = "2770";
+
+      # apple extensions to have a good time machine experience
       "vfs objects" = "catia fruit streams_xattr";
       "valid users" = "dwt vera"; # TODO also allow vera
       "public" = "no";
