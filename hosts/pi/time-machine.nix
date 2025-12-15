@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs-unstable, ... }:
 {
   users.groups.timemachine.members = [
     "dwt"
@@ -27,6 +27,9 @@
 
   services.samba = {
     enable = true;
+    # workaround for https://github.com/NixOS/nixpkgs/issues/467002
+    # until https://github.com/NixOS/nixpkgs/pull/468880 lands
+    package = pkgs-unstable.samba;
     openFirewall = true;
     settings.TimeMachine = {
       path = "/mnt/backup";
@@ -41,7 +44,7 @@
       "valid users" = "dwt vera"; # TODO also allow vera
       "public" = "no";
       "writeable" = "yes";
-      "fruit:aapl" = "yes";
+      "fruit:aapl" = "yes"; # default yes
       "fruit:time machine" = "yes";
     };
   };
