@@ -41,7 +41,7 @@
 
       # apple extensions to have a good time machine experience
       "vfs objects" = "catia fruit streams_xattr";
-      "valid users" = "dwt vera"; # TODO also allow vera
+      "valid users" = "dwt vera";
       "public" = "no";
       "writeable" = "yes";
       "fruit:aapl" = "yes"; # default yes
