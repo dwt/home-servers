@@ -10,6 +10,6 @@
     ncdu
     jq
     yq-go
-    helix
+    fresh # terminal editor which approximates ui editors
   ];
 }
