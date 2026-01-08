@@ -10,6 +10,6 @@
     ncdu # disk usage analyzer
     jq # JSON processor
     yq-go # YAML processor
-    fresh # terminal editor which approximates ui editors
+    pkgs-unstable.fresh-editor # terminal editor which approximates ui editors
   ];
 }
