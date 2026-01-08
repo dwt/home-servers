@@ -2,7 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     # nix debugging
-    pkgs-unstable.nix-tree
+    nix-tree
 
     # my dependencies
     rmate-sh # remote editor client for TextMate remote editing
