@@ -5,11 +5,11 @@
     pkgs-unstable.nix-tree
 
     # my dependencies
-    rmate-sh
-    btop
-    ncdu
-    jq
-    yq-go
+    rmate-sh # remote editor client for TextMate remote editing
+    btop # resource monitor
+    ncdu # disk usage analyzer
+    jq # JSON processor
+    yq-go # YAML processor
     fresh # terminal editor which approximates ui editors
   ];
 }
