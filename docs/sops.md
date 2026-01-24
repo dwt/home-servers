@@ -1,4 +1,4 @@
-# How SOPS works
+## How SOPS works
 
 - [sops Documentation](https://github.com/getsops/sops?tab=readme-ov-file#encrypting-using-age)
 
@@ -23,7 +23,7 @@
 - `git config --global  diff.sopsdiffer.textconv "sh -c 'sops -d $1 2>/dev/null || cat $1' --"`
   to get `git diff -p` to show decrypted secrets
 
-# TODO Better ways to deploy my raspberry pi secrets
+## TODO Better ways to deploy my raspberry pi secrets
 
 Modify the way the binary sd-image is built, so it includes the hostkey already.
 
