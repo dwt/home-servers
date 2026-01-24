@@ -9,6 +9,7 @@ TODO how did I move the nix install over to that drive?
   - leaves all UUIDs duplicated - but fixing that breaks the boot.
 
 ## Fix UUIDs - but note: breaks boot
+
 - made all the UUIDS unique
   - ext4:
     - `e2fsck -f /dev/sda2` # needs check first
@@ -50,4 +51,4 @@ Nächster Schritt: Bootreihenfolge ändern.
 $ mkdir -p /boot/firmware
 $ mount /dev/disk/by-label/FIRMWARE /boot/firmware
 $ rpi-eeprom-config --edit
-# add
+```

@@ -1,6 +1,7 @@
 # How SOPS works
 
 - [sops Documentation](https://github.com/getsops/sops?tab=readme-ov-file#encrypting-using-age)
+
 - [sops-nix Documentation](https://github.com/Mic92/sops-nix?tab=readme-ov-file#sops-nix)
 
 - `.sops.yaml` contains
@@ -9,13 +10,16 @@
   - `cat path/to/ed25519.pub | nix run nixpkgs#ssh-to-age` to convert a single public key
   - at one age key generated from every host that these secrets need to be deployed to
   - rules that map these keys to secrets files
+
 - `secrets.yaml` contains the secrets (should be split up by host in the future)
   - `sops secrets.yaml` to edit them
   - `sops updatekeys **/secrets.yaml` to reencrypt the file after keys change
+
 - ssh host keys:
   - On the target system, the ssh host key is the trust anchor which decrypts all secrets and makes them available in `/run/secrets/*`, possibly symlinked from other places in the system after boot
   - Since I cannot (yet) deploy ssh host keys when creating an sd-image.
   - `bin/ssh-deploy-host-key` to deploy the host key to the target system and overwrite the generated one
+
 - `git config --global  diff.sopsdiffer.textconv "sh -c 'sops -d $1 2>/dev/null || cat $1' --"`
   to get `git diff -p` to show decrypted secrets
 
