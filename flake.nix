@@ -13,14 +13,13 @@
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     home-automation.url = "github:dwt/home-automation";
     home-automation.inputs.nixpkgs.follows = "nixpkgs";
+    # tooling
+    git-hooks.url = "github:cachix/git-hooks.nix";
+    git-hooks.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
-    inputs@{
-      self,
-      nixpkgs,
-      ...
-    }:
+    inputs:
     let
       # Could this be upstreamed?
       # perhaps with a generator to get all functions by handing in the packages in question?
@@ -35,15 +34,15 @@
       #     }
       #   );
 
-      darwinSystems = nixpkgs.lib.filter (nixpkgs.lib.hasSuffix "-darwin") nixpkgs.lib.systems.flakeExposed;
-      forAllSystems = nixpkgs.lib.genAttrs darwinSystems;
+      darwinSystems = inputs.nixpkgs.lib.filter (inputs.nixpkgs.lib.hasSuffix "-darwin") inputs.nixpkgs.lib.systems.flakeExposed;
+      forAllSystems = inputs.nixpkgs.lib.genAttrs darwinSystems;
       forAllSystemsWithPackages =
         fn:
         forAllSystems (
           system:
           fn {
             inherit system;
-            pkgs = nixpkgs.legacyPackages.${system};
+            pkgs = inputs.nixpkgs.legacyPackages.${system};
           }
         );
 
@@ -60,7 +59,7 @@
       ];
       nixosSystem =
         { modules }:
-        nixpkgs.lib.nixosSystem {
+        inputs.nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs;
           };
@@ -84,10 +83,25 @@
         };
       };
 
-      devShells = forAllSystemsWithPackages (
-        { pkgs, ... }:
+      # Run the hooks in a sandbox with `nix flake check`.
+      # Read-only filesystem and no internet access.
+      checks = forAllSystemsWithPackages (
+        { system, ... }:
         {
-          default = import ./shell.nix { inherit pkgs; };
+          pre-commit-check = inputs.git-hooks.lib.${system}.run {
+            src = ./.;
+            hooks = {
+              deadnix.enable = true;
+              flake-checker.enable = true;
+            };
+          };
+        }
+      );
+
+      devShells = forAllSystemsWithPackages (
+        { system, pkgs, ... }:
+        {
+          default = import ./shell.nix { inherit system inputs pkgs; };
         }
       );
     };
