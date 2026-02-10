@@ -11,8 +11,6 @@
     # secrets management
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-    home-automation.url = "github:dwt/home-automation";
-    home-automation.inputs.nixpkgs.follows = "nixpkgs";
     # tooling
     git-hooks.url = "github:cachix/git-hooks.nix";
     git-hooks.inputs.nixpkgs.follows = "nixpkgs";
@@ -70,7 +68,6 @@
       nixosConfigurations = {
         pi = nixosSystem {
           modules = [
-            hosts/pi/home-automation.nix
             hosts/pi/time-machine.nix
             hosts/pi/configuration.nix
           ];
