@@ -22,6 +22,11 @@
   # Opinionated: disable channels
   nix.channel.enable = false;
 
+  # extra registry entries
+  nix.registry = {
+    nixpkgs-unstable.flake = inputs.nixpkgs-unstable;
+  };
+
   # automatically prune no longer needed nix packages
   # nix.gc.automatic = true;
   programs.nh = {
