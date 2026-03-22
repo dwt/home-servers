@@ -16,6 +16,7 @@
     pkgs-unstable.fresh-editor # terminal editor which approximates ui editors
     git # distributed version control
     lazygit # git tui
+    prek
   ];
 
   programs.direnv.enable = true; # auto activate development environments on entering directories
