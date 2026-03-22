@@ -32,8 +32,9 @@
       #     }
       #   );
 
-      darwinSystems = inputs.nixpkgs.lib.filter (inputs.nixpkgs.lib.hasSuffix "-darwin") inputs.nixpkgs.lib.systems.flakeExposed;
-      forAllSystems = inputs.nixpkgs.lib.genAttrs darwinSystems;
+      # darwinSystems = inputs.nixpkgs.lib.filter (inputs.nixpkgs.lib.hasSuffix "-darwin") inputs.nixpkgs.lib.systems.flakeExposed;
+      # forAllSystems = inputs.nixpkgs.lib.genAttrs darwinSystems;
+      forAllSystems = inputs.nixpkgs.lib.genAttrs inputs.nixpkgs.lib.systems.flakeExposed;
       forAllSystemsWithPackages =
         fn:
         forAllSystems (
