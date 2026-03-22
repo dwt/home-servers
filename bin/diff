@@ -2,6 +2,7 @@
 
 set -e
 
+
 HOST=${1:-pi}
 
 nom build .#nixosConfigurations.$HOST.config.system.build.toplevel
@@ -15,7 +16,6 @@ if_remote() {
 local_or_remote() {
     prefix=""
     if_remote prefix="ssh $HOST "
-    echo $prefix
     $prefix "$@"
 }
 
