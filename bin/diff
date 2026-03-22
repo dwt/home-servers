@@ -1,19 +1,33 @@
 #!/bin/sh
 
-set -ex
+set -e
 
 HOST=${1:-pi}
 
 nom build .#nixosConfigurations.$HOST.config.system.build.toplevel
 
+if_remote() {
+    if [ "$(uname -n)" != "$HOST" ]; then
+        "$@"
+    fi
+}
+
+local_or_remote() {
+    prefix=""
+    if_remote prefix="ssh $HOST "
+    echo $prefix
+    $prefix "$@"
+}
+
+
 OUT_PATH=result
-CURRENT_SYSTEM=$(ssh $HOST readlink /run/current-system)
+CURRENT_SYSTEM=$(local_or_remote readlink /run/current-system)
 
 #echo "OUT_PATH: $OUT_PATH"
 #echo "CURRENT_SYSTEM: $CURRENT_SYSTEM"
 
 # fetch the current system closure, so I can diff it
-nix copy --no-check-sigs --from ssh-ng://$HOST $CURRENT_SYSTEM
+if_remote nix copy --no-check-sigs --from ssh-ng://$HOST $CURRENT_SYSTEM
 
 # package level diff
 nvd diff $CURRENT_SYSTEM $OUT_PATH
