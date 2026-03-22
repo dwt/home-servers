@@ -16,8 +16,9 @@
     pkgs-unstable.fresh-editor # terminal editor which approximates ui editors
     git # distributed version control
     lazygit # git tui
-    prek
+    prek # pre-commit in rust
     television # fuzzy finder with tui
+    fd # nicer find
   ];
 
   programs.direnv.enable = true; # auto activate development environments on entering directories
