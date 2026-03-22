@@ -10,6 +10,13 @@
     ncdu # disk usage analyzer
     jq # JSON processor
     yq-go # YAML processor
+    bat # better cat
+
+    # dev stuff
     pkgs-unstable.fresh-editor # terminal editor which approximates ui editors
+    git # distributed version control
+    lazygit # git tui
   ];
+
+  programs.direnv.enable = true; # auto activate development environments on entering directories
 }
