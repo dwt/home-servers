@@ -17,6 +17,7 @@
     git # distributed version control
     lazygit # git tui
     prek
+    television # fuzzy finder with tui
   ];
 
   programs.direnv.enable = true; # auto activate development environments on entering directories
