@@ -44,3 +44,4 @@ Pop on an external display and keyboard and see what's up. Cumbersome, but quite
 - [ ] move to boot to the ssd
   - [ ] How to describe disk partitions in nix? [Disco](https://github.com/nix-community/disko)
 - [ ] How to get contact syncing to work via the pi
+- [ ] Verlangen das im repo jeder commit signed ist!
