@@ -2,7 +2,6 @@
 
 set -e
 
-
 HOST=${1:-pi}
 
 nom build .#nixosConfigurations.$HOST.config.system.build.toplevel
