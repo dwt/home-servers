@@ -26,8 +26,12 @@ CURRENT_SYSTEM=$(local_or_remote readlink /run/current-system)
 is_remote && nix copy --no-check-sigs --from ssh-ng://$HOST $CURRENT_SYSTEM
 
 # file level diff
-nix run nixpkgs#nix-diff -- \
+# nix run nixpkgs#nix-diff -- \
+#     $CURRENT_SYSTEM \
+#     $OUT_PATH \
+#     --color always
+
+nix run github:Mic92/nix-diff-rs -- \
     $CURRENT_SYSTEM \
     $OUT_PATH \
     --color always
-# nix-diff: unknown-deriver: withBinaryFile: does not exist (No such file or directory)
