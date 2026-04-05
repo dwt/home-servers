@@ -19,6 +19,7 @@
     prek # pre-commit in rust
     television # fuzzy finder with tui
     fd # nicer find
+    ripgrep # nicer grep
   ];
 
   programs.direnv.enable = true; # auto activate development environments on entering directories
