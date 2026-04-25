@@ -20,6 +20,7 @@
     television # fuzzy finder with tui
     fd # nicer find
     ripgrep # nicer grep
+    pkgs-unstable.pi-coding-agent # minimal terminal based coding agent
   ];
 
   programs.direnv.enable = true; # auto activate development environments on entering directories
