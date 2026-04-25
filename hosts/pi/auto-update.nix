@@ -1,6 +1,9 @@
 {
+  # Does not quite do what I want yet. When it points to a git repo, I cannot use `--update-input nixpkgs`
+  # So I need to prepare a git checkout, but I do not know yet how to do that from nix.
+  # And just pointing to a git repo means I loose updates I push locally when I forget to also push them to git
   system.autoUpgrade = {
-    enable = true;
+    enable = false;
     # Syntax: "git+https://server.com/user/repo.git#hostname"
     flake = "git+https://github.com/dwt/home-servers.git#pi";
     flags = [
