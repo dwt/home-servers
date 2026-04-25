@@ -72,6 +72,7 @@
             hosts/pi/time-machine.nix
             hosts/pi/configuration.nix
             hosts/pi/auto-update.nix
+            hosts/pi/sysctl.nix
           ];
         };
 
