@@ -1,4 +1,4 @@
-#!/bin/sh
+#! /bin/sh
 
 set -e
 
@@ -11,7 +11,7 @@ TARGET_HOST=${2:-$HOST} # allow setting an IP if dns access does not work yet, e
 nixos-rebuild \
     switch \
     --fast \
-    --flake .#$HOST \
-    --target-host $TARGET_HOST \
+    --flake .#"$HOST" \
+    --target-host "$TARGET_HOST" \
     --use-remote-sudo \
     --log-format internal-json -v 2>&1 | nom --json
