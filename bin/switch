@@ -2,6 +2,9 @@
 
 set -e
 
+HERE=$(dirname "$0")
+"$HERE"/is-git-clean || exit 1
+
 HOST=${1:-pi}
 TARGET_HOST=${2:-$HOST} # allow setting an IP if dns access does not work yet, e.g. for a new pi
 
