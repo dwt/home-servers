@@ -5,6 +5,12 @@
   ...
 }:
 {
+  # enable fast local searches for packages for tool names
+  imports = [
+    inputs.nix-index-database.nixosModules.default
+    { programs.nix-index-database.comma.enable = true; }
+  ];
+
   # Enable flakes and new 'nix' command
   nix.settings = {
     experimental-features = [
