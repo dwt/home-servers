@@ -41,3 +41,4 @@ Pop on an external display and keyboard and see what's up. Cumbersome, but quite
 - [ ] require all signed commits in the repo - especially by the auto upgrade
 - [ ] Add real monitoring for hardware (temperature, fan, disk, etc.) as well as software (services, etc.) health
   - telegraf + victoria-metrics + grafana, to get and visualized all systemd service stats. grafana handles alerting. Easy to extend for the in car system.
+- [ ] backups and possibly switch to impermanence https://github.com/nix-community/impermanence
