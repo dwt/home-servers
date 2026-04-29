@@ -7,12 +7,12 @@ if [ -n "$(git status --porcelain)" ]; then
     exit 1
 fi
 
-if ! git rev-parse --verify "@{u}" >/dev/null 2>&1; then
+if ! git rev-parse --verify "@{upstream}" >/dev/null 2>&1; then
     echo "Error: Current branch has no upstream configured."
     exit 1
 fi
 
-if [ -n "$(git rev-list "@{u}..HEAD")" ]; then
+if [ -n "$(git rev-list "@{upstream}..HEAD")" ]; then
     echo "Error: There are local commits that have not been pushed to the server."
     exit 1
 fi
