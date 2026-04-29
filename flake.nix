@@ -19,7 +19,7 @@
   outputs =
     inputs:
     let
-      # Could this be upstreamed?
+      # Could this be upstreamed? Yes, but upstream doesn't want it
       # perhaps with a generator to get all functions by handing in the packages in question?
       # forFlakeExposedSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
       # forFlakeExposedSystemsWithPackages =
@@ -45,6 +45,7 @@
           }
         );
 
+      # REFACT auto enumerate all modules
       commonModules = [
         modules/sops.nix
         modules/locale.nix
@@ -68,6 +69,7 @@
     {
       nixosConfigurations = {
         pi = nixosSystem {
+          # REFACT auto enumerate all modules
           modules = [
             hosts/pi/time-machine.nix
             hosts/pi/configuration.nix
@@ -77,6 +79,7 @@
         };
 
         pi-test = nixosSystem {
+          # REFACT auto enumerate all modules
           modules = [
             hosts/pi-test/configuration.nix
           ];

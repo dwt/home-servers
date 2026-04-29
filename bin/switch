@@ -3,6 +3,9 @@
 set -e
 
 HERE=$(dirname "$0")
+
+# If there are things that are not pushed to git, then auto update will eventually undo them
+# TODO add easy ability to skip check
 "$HERE"/is-git-clean || exit 1
 
 HOST=${1:-pi}
