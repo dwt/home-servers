@@ -50,6 +50,7 @@
 
       # REFACT auto enumerate all modules
       commonModules = [
+        modules/auto-upgrade.nix
         modules/sops.nix
         modules/locale.nix
         modules/hardware-config.nix
@@ -76,7 +77,6 @@
           modules = [
             hosts/pi/time-machine.nix
             hosts/pi/configuration.nix
-            hosts/pi/auto-update.nix
             hosts/pi/sysctl.nix
           ];
         };
