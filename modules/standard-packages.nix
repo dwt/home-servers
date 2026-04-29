@@ -11,6 +11,7 @@
     jq # JSON processor
     yq-go # YAML processor
     bat # better cat
+    isd # systemd tui
 
     # dev stuff
     pkgs-unstable.fresh-editor # terminal editor which approximates ui editors
