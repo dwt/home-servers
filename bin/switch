@@ -11,9 +11,8 @@ HERE=$(dirname "$0")
 HOST=${1:-pi}
 TARGET_HOST=${2:-$HOST} # allow setting an IP if dns access does not work yet, e.g. for a new pi
 
-nixos-rebuild \
+nixos-rebuild-ng \
     switch \
-    --option extra-experimental-features "nix-command flakes pipe-operator" \
     --fast \
     --flake .#"$HOST" \
     --target-host "$TARGET_HOST" \

@@ -10,7 +10,7 @@ pkgs.mkShell {
   inherit shellHook;
   buildInputs = enabledPackages;
   packages = with pkgs; [
-    nixos-rebuild
+    nixos-rebuild-ng
     nix-output-monitor
     nvd
     age
