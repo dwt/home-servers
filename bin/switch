@@ -13,8 +13,10 @@ TARGET_HOST=${2:-$HOST} # allow setting an IP if dns access does not work yet, e
 
 nixos-rebuild \
     switch \
+    --option extra-experimental-features "nix-command flakes pipe-operator" \
     --fast \
     --flake .#"$HOST" \
     --target-host "$TARGET_HOST" \
     --use-remote-sudo \
-    --log-format internal-json -v 2>&1 | nom --json
+    --log-format internal-json -v 2>&1 |
+    nom --json
