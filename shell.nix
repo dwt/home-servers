@@ -5,12 +5,14 @@
 }:
 let
   inherit (inputs.self.checks.${system}.pre-commit-check) shellHook enabledPackages;
+  lib = pkgs.callPackage ./lib { };
+
 in
 pkgs.mkShell {
   inherit shellHook;
   buildInputs = enabledPackages;
   packages = with pkgs; [
-    nixos-rebuild-ng
+    (lib.mkPkgs inputs.nixpkgs-unstable).lixPackageSets.latest.nixos-rebuild-ng
     nix-output-monitor
     nvd
     age

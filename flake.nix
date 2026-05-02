@@ -96,9 +96,19 @@
       );
 
       devShells = forAllSystemsWithPackages (
-        { system, pkgs, ... }:
         {
-          default = import ./shell.nix { inherit system inputs pkgs; };
+          system,
+          pkgs,
+          ...
+        }:
+        {
+          default = import ./shell.nix {
+            inherit
+              system
+              inputs
+              pkgs
+              ;
+          };
         }
       );
     };
