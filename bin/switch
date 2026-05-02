@@ -1,21 +1,31 @@
-#! /bin/sh
+#!/usr/bin/env bash
 
 set -e
 
 HERE=$(dirname "$0")
 
-# If there are things that are not pushed to git, then auto update will eventually undo them
-# TODO add easy ability to skip check
-"$HERE"/is-git-clean || exit 1
+FORCE=false
+if [ "${1:-}" = "--force" ]; then
+    FORCE=true
+    shift
+fi
 
 HOST=${1:-pi}
 TARGET_HOST=${2:-$HOST} # allow setting an IP if dns access does not work yet, e.g. for a new pi
 
-nixos-rebuild-ng \
-    switch \
-    --fast \
-    --flake .#"$HOST" \
-    --target-host "$TARGET_HOST" \
-    --use-remote-sudo \
-    --log-format internal-json -v 2>&1 |
-    nom --json
+if [ "$FORCE" = false ]; then
+    # If there are things that are not pushed to git, then auto update will eventually undo them
+    "$HERE"/is-git-clean || exit 1
+fi
+
+args=(
+    switch
+    --impure
+    --flake ".#$HOST"
+    --target-host "$TARGET_HOST"
+    --sudo
+    --fast
+    --log-format internal-json -v
+)
+
+nixos-rebuild "${args[@]}" |& nom --json
