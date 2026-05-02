@@ -31,6 +31,8 @@
   # extra registry entries
   nix.registry = {
     nixpkgs-unstable.flake = inputs.nixpkgs-unstable;
+    # lots of prepackaged llm and agentic coding tools
+    llm-agents.to = builtins.parseFlakeRef "github:numtide/llm-agents.nix";
   };
 
   # automatically prune no longer needed nix packages
