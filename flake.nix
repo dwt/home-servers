@@ -22,6 +22,7 @@
   outputs =
     inputs:
     let
+      # REFACT consider extracting lib file
       # Could this be upstreamed? Yes, but upstream doesn't want it
       # perhaps with a generator to get all functions by handing in the packages in question?
       # forFlakeExposedSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
@@ -48,19 +49,17 @@
           }
         );
 
-      # REFACT auto enumerate all modules
-      commonModules = [
-        modules/auto-upgrade.nix
-        modules/sops.nix
-        modules/locale.nix
-        modules/hardware-config.nix
-        modules/standard-packages.nix
-        modules/nix-setup.nix
-        modules/remote-access.nix
-        modules/user.nix
-        modules/sd-image.nix
-        modules/usbc-serial.nix
-      ];
+      allNixFilesInDir =
+        dir:
+        with inputs.nixpkgs.lib;
+        dir
+        |> builtins.readDir
+        |> attrNames
+        |> filter (name: hasSuffix ".nix" name && name != "default.nix")
+        |> map (name: path.append dir name);
+
+      commonModules = allNixFilesInDir ./modules;
+
       nixosSystem =
         { modules }:
         inputs.nixpkgs.lib.nixosSystem {
@@ -73,19 +72,11 @@
     {
       nixosConfigurations = {
         pi = nixosSystem {
-          # REFACT auto enumerate all modules
-          modules = [
-            hosts/pi/time-machine.nix
-            hosts/pi/configuration.nix
-            hosts/pi/sysctl.nix
-          ];
+          modules = allNixFilesInDir ./hosts/pi;
         };
 
         pi-test = nixosSystem {
-          # REFACT auto enumerate all modules
-          modules = [
-            hosts/pi-test/configuration.nix
-          ];
+          modules = allNixFilesInDir ./hosts/pi-test;
         };
       };
 
