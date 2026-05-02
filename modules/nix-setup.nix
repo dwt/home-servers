@@ -47,6 +47,7 @@
   _module.args =
     let
       # TODO contribute mkPkgs to nixpkgs.lib
+      # REFACt move function into lib file
       mkPkgs =
         customNixpkgsVersion:
         import customNixpkgsVersion {
@@ -69,5 +70,4 @@
   # see there for advanced nix -> lix overrides of custom packages
   # also supports: stable, latest, git
   nix.package = pkgs.lixPackageSets.latest.lix;
-
 }
