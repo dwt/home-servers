@@ -6,7 +6,13 @@
 # note the disk name of the sd card
 # set --local disk "/dev/disk4"
 # read -p "Enter the disk identifier (e.g., /dev/disk4): " disk
-disk=$(diskutil list physical | fzf --prompt="Select a disk: " | awk '{print $1}')
+# Disk name is printed last
+disk=$(
+    diskutil list physical |
+        grep '^/dev/disk' |
+        awk '{print $1}' |
+        fzf --prompt="Select a disk: " --preview="diskutil list physical {}"
+)
 echo $disk
 
 read -p "You have selected $disk. Is this correct? (Y/n): " confirm
