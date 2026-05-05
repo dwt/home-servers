@@ -45,10 +45,33 @@ ioctl() wird aufgerufen, um die Partitionstabelle neu einzulesen.
 Festplatten werden synchronisiert.
 ```
 
-Nächster Schritt: Bootreihenfolge ändern.
+## Boot from sata / usb
 
 ```sh
-$ mkdir -p /boot/firmware
-$ mount /dev/disk/by-label/FIRMWARE /boot/firmware
-$ rpi-eeprom-config --edit
+$ sudo -E rpi-eeprom-config --edit
 ```
+
+Current setting on the pi:
+
+```ini
+[all]
+BOOT_ORDER=0xf14
+```
+
+For a Raspberry Pi 4, `0xf14` means: try USB mass storage first, then SD, then
+restart the boot sequence.
+
+After editing, save and close the editor, then reboot:
+
+```sh
+$ sudo reboot
+```
+
+To verify the configured boot order afterwards:
+
+```sh
+$ rpi-eeprom-config
+```
+
+This is currently configured manually in the EEPROM bootloader config on the
+device and is not managed declaratively from this repo yet.
