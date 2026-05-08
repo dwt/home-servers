@@ -24,7 +24,7 @@ args=(
     --flake ".#$HOST"
     --target-host "$TARGET_HOST"
     --sudo
-    --fast
+    --no-reexec
     --log-format internal-json -v
 )
 
