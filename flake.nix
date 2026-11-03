@@ -3,7 +3,7 @@
 
   inputs = {
     # main package source
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     # only as needed
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # raspberry pi hardware description
