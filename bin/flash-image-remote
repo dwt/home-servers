@@ -1,0 +1,42 @@
+#! /bin/bash
+set -euo pipefail
+
+if [ "$#" -gt 1 ]; then
+    echo "Usage: $0 [image-path]" >&2
+    exit 1
+fi
+
+IMAGE_PATH="${1:-nixos-sd.img}"
+
+# pi with ssd external disk
+PI=${PI:-"pi"}
+REMOTE_DISK=${REMOTE_DISK:-"/dev/disk/by-id/ata-INTENSO_SSD_AA000000000000007899"}
+
+# pi-test with usb stick
+PI="pi-test"
+REMOTE_DISK="/dev/disk/by-id/usb-SanDisk_Ultra_Fit_010197f97c7a749058ab48911b8799eb879ab6d5369bf5e312733ca1b61b5b1a332c0000000000000000000008cd9390ff1a5b00835581079426445f-0:0"
+
+pv_args=(
+    --progress
+    --timer
+    --eta
+    --rate
+    --average-rate
+    --bytes
+)
+
+if [ ! -f "$IMAGE_PATH" ]; then
+    echo "Image not found: $IMAGE_PATH" >&2
+    exit 1
+fi
+
+# check symlink actually points to a block device
+ssh $PI bash -s -- "$REMOTE_DISK" <<'EOF'
+set -euo pipefail
+REMOTE_DISK="$1"
+test -b "$(readlink -f "$REMOTE_DISK")"
+EOF
+
+# Write the image to the remote disk
+pv "${pv_args[@]}" "$IMAGE_PATH" |
+    ssh $PI "sudo dd of='$REMOTE_DISK' bs=4M iflag=fullblock oflag=direct conv=fsync"
