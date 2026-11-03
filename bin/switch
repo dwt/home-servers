@@ -28,4 +28,4 @@ args=(
     --log-format internal-json -v
 )
 
-nixos-rebuild "${args[@]}" |& nom --json
+nixos-rebuild "${args[@]}" 2>&1 | nom --json
