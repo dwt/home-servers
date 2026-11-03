@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
+    echo "Usage: $0 <commit> [host]" >&2
+    exit 1
+fi
+
+commit="$1"
+host="${2:-pi}"
+
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+repo_root="$(cd "$script_dir/.." && pwd)"
+
+short_commit="$(git -C "$repo_root" rev-parse --short "$commit")"
+resolved_commit="$(git -C "$repo_root" rev-parse "$commit")"
+
+worktree_root="$repo_root/.tmp/ssd-boot-worktrees"
+worktree_dir="$worktree_root/$short_commit"
+artifact_dir="$repo_root/.tmp/ssd-boot-images"
+artifact_link="$artifact_dir/${host}-${short_commit}.img"
+
+mkdir -p "$worktree_root" "$artifact_dir"
+
+if [ ! -d "$worktree_dir" ]; then
+    git -C "$repo_root" worktree add --detach "$worktree_dir" "$resolved_commit"
+fi
+
+current_head="$(git -C "$worktree_dir" rev-parse HEAD)"
+if [ "$current_head" != "$resolved_commit" ]; then
+    echo "Existing worktree $worktree_dir is at $current_head, expected $resolved_commit" >&2
+    echo "Remove it manually if you want to rebuild this commit there." >&2
+    exit 1
+fi
+
+(
+    cd "$worktree_dir"
+    nom build ".#nixosConfigurations.$host.config.system.build.sdImage"
+)
+
+image_matches=("$worktree_dir"/result/sd-image/nixos-*image*.img)
+
+if [ "${#image_matches[@]}" -ne 1 ]; then
+    echo "Expected exactly one image, found ${#image_matches[@]} in $worktree_dir/result/sd-image" >&2
+    exit 1
+fi
+
+image_path="${image_matches[0]}"
+ln -sfn "$image_path" "$artifact_link"
+
+cat <<EOF
+Built commit: $resolved_commit
+Host: $host
+Worktree: $worktree_dir
+Image: $artifact_link
+
+EOF
