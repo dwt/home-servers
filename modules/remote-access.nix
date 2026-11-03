@@ -29,10 +29,11 @@
   # make $host.local work
   services.avahi = {
     enable = true;
-    publish.enable = true;
     nssmdns4 = true; # support .local domains
-    # Is this necessary?
-    publish.workstation = true; # advertises this machine as 'workstation' but why?
+    settings.publish = {
+      disable-publishing = false; # default: just listening
+      publish-workstation = true; # advertises this machine as 'workstation'
+    };
   };
 
 }
