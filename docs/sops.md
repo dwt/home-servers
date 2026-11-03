@@ -11,7 +11,7 @@
   - at one age key generated from every host that these secrets need to be deployed to
   - rules that map these keys to secrets files
 
-- `secrets.yaml` contains the secrets (should be split up by host in the future)
+- `secrets.yaml` contains the secrets (each host has his own secrets file)
   - `sops secrets.yaml` to edit them
   - `sops updatekeys **/secrets.yaml` to reencrypt the file after keys change
 
