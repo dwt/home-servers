@@ -78,6 +78,10 @@
         pi-test = nixosSystem {
           modules = allNixFilesInDir ./hosts/pi-test;
         };
+
+        pi-rodi = nixosSystem {
+          modules = allNixFilesInDir ./hosts/pi-rodi;
+        };
       };
 
       # Run the hooks in a sandbox with `nix flake check`.

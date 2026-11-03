@@ -14,8 +14,11 @@
   };
 
   config = lib.mkIf config.my.raspberry-pi.usbc-serial.enable {
+    boot.loader.generic-extlinux-compatible.useGenerationDeviceTree = false;
     # enable the device overlay so usb c is initialized
-    hardware.raspberry-pi."4".dwc2.enable = true;
+    hardware.raspberry-pi.configtxt.deviceTreeOverlays.pi4 = [
+      { dwc2 = { }; }
+    ];
     # enable serial device over usb-c
     boot.initrd.kernelModules = [
       "g_serial"
