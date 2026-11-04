@@ -1,7 +1,10 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   # define secret
-  sops.secrets."wireless.secrets" = { };
+  sops.secrets."wireless.secrets" = {
+    group = "wpa_supplicant"; # TODO replace with reference to configured group of wpa-supplicant systemd unit?
+    mode = "0440";
+  };
   networking.wireless = {
     enable = true;
     secretsFile = config.sops.secrets."wireless.secrets".path;
@@ -11,6 +14,11 @@
       "Wo bleibt die Devolution?".pskRaw = "ext:home_psk";
     };
   };
+
+  # for manual wireless management
+  environment.systemPackages = [
+    pkgs.iw
+  ];
 
   # allow usage of `wpa_cli`
   # networking.wireless.userControlled.enable = true;
