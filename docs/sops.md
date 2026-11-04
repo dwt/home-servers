@@ -26,7 +26,7 @@
 ## Generate a user password hash
 
 - `mkpasswd -m yescrypt` to generate a password hash (asks for the password, so not in shell history)
-- `sops hosts/$HOSTNAME/secrets.yaml` to store the hash in the host secrets file. Name-schema: `${user}_password{,_hash}`, 
+- `sops hosts/$HOSTNAME/secrets.yaml` to store the hash in the host secrets file. Name-schema: `${user}_password_{plain,hash}`, 
 
 ## TODO Better ways to deploy my raspberry pi secrets
 

@@ -1,8 +1,8 @@
 { config, ... }: {
-  # Just a marker what the first installed version was
-  # Ensures database files are kept backwards compatible with data from this version
   system.stateVersion = "26.11";
+  imports = [ ../../modules/hardware/raspi5.nix ];
 
+  sops.secrets.inga_password_hash.sopsFile = ./secrets.yaml;
   sops.secrets.inga_password_hash.neededForUsers = true;
   users = {
     mutableUsers = false;
@@ -19,4 +19,13 @@
   };
 
   security.sudo.wheelNeedsPassword = false;
+
+  networking.wireless = {
+    networks = {
+      # wireless password secrets need to be configured in global secrets.yaml
+      # because only one secrets file can be generated for wireless config
+      "Muehl8".pskRaw = "ext:muehl8_psk";
+    };
+  };
+
 }
