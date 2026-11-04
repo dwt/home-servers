@@ -2,3 +2,4 @@ result
 nixos-sd.img
 .direnv
 .pre-commit-config.yaml
+/todo
