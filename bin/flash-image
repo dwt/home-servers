@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 pv_args=(
     --progress
     --timer
@@ -22,7 +24,6 @@ disk=$(
         awk '{print $1}' |
         fzf --prompt="Select a disk: " --preview="diskutil list physical {}"
 )
-echo "$disk"
 
 read -p "You have selected $disk. Is this correct? (Y/n): " confirm
 if [[ $confirm != "y" ]] && [[ $confirm != "Y" ]] && [[ -n $confirm ]]; then
@@ -30,11 +31,13 @@ if [[ $confirm != "y" ]] && [[ $confirm != "Y" ]] && [[ -n $confirm ]]; then
     exit 1
 fi
 
+set -x
+
 # ensure it is umounted
 diskutil unmountDisk "$disk"
 
 # Write the image to the sd card
-pv "${pv_args[@]}" nixos-sd.img | sudo dd of="$disk" bs=4m conv=fsync
+pv "${pv_args[@]}" nixos-sd.img | sudo dd of="$disk" bs=4M conv=fsync
 
 # eject the disk
 diskutil eject "$disk"
