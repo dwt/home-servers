@@ -3,6 +3,7 @@
 1. Add a new directory in `hosts/$HOSTNAME/` for the new pi.
 1. Add a new entry in `flake.nix` for the new pi.
 1. Setup sops to support the new pi as far as it goes
+   - Create the host secrets file and [generate a user password hash](./sops.md#generate-a-user-password-hash)
 
 Provisioning the new pi should now work, but it won't join any wireless, because it cannot decrypt the wireless keys, because it has just generated a new host ssh key - which is the trust anchor for all the crypto. To fix this:
 

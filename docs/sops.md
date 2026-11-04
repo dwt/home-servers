@@ -23,6 +23,11 @@
 - `git config --global  diff.sopsdiffer.textconv "sh -c 'sops -d $1 2>/dev/null || cat $1' --"`
   to get `git diff -p` to show decrypted secrets
 
+## Generate a user password hash
+
+- `mkpasswd -m yescrypt` to generate a password hash (asks for the password, so not in shell history)
+- `sops hosts/$HOSTNAME/secrets.yaml` to store the hash in the host secrets file. Name-schema: `${user}_password{,_hash}`, 
+
 ## TODO Better ways to deploy my raspberry pi secrets
 
 Modify the way the binary sd-image is built, so it includes the hostkey already.

@@ -18,6 +18,7 @@ pkgs.mkShell {
     age
     ssh-to-age
     sops
+    mkpasswd # create password hashes for nix config
     git
     pv # show progress in shell pipes
     tio # serial console
