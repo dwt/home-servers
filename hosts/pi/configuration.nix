@@ -1,5 +1,6 @@
 {
   networking.hostName = "pi";
+  config.my.raspberry-pi."4".enable = true;
 
   # kills booting on 25.05 for me -> Explore on pi-test first
   my.raspberry-pi.usbc-serial.enable = false;

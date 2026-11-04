@@ -5,6 +5,8 @@
   # Not sure this is actually possible though
   # This says it's not: https://stackoverflow.com/questions/63104542/can-usb-otg-be-used-for-u-boot-and-linux-consoles
 
+  # TODO enforce that some raspberry config is active when usb serial is activated
+
   # Deeper documentation
   # https://github.com/NixOS/nixos-hardware/blob/master/raspberry-pi/4/dwc2.nix
   # https://linux-sunxi.org/USB_Gadget/Serial
