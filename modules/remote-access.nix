@@ -7,6 +7,7 @@
   };
   networking.wireless = {
     enable = true;
+    # there can only be one wireless secret file, so additoknal wireless passwords need to be defined in this file
     secretsFile = config.sops.secrets."wireless.secrets".path;
     networks = {
       # SSID can come from secret too, perhaps marked as *_unencrypted
